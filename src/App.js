@@ -6,7 +6,7 @@ function App() {
   return (
     <TiktokProvider>
       <div className="App">
-
+        <Home/>
       </div>
     </TiktokProvider>
   );
