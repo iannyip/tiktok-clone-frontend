@@ -32,8 +32,9 @@ export function doSomeCase() {
 // ------- PROVIDER
 export const tiktokContext = React.createContext(null);
 const {Provider} = tiktokContext;
-export function tiktokProvider ({children}){
+export function TiktokProvider ({children}){
   const [store, dispatch] = useReducer(tiktokReducer, initialState);
+
   return <Provider value={{store, dispatch}}>{children}</Provider>
 }
 
