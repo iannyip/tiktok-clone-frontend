@@ -3,7 +3,18 @@ import axios from "axios";
 
 // ------- STATE SETUP
 export const initialState = {
-
+  currentView: "Home",
+  headerNav: "For You",
+  userId: null,
+  profile: {
+    username: null,
+    profilepic: null,
+    following: null,
+    followers: null,
+    likes: null,
+    videos: [],
+  },
+  videoArr: [],
 };
 
 const SOME_CASE = "SOME_CASE";
