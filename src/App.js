@@ -1,12 +1,12 @@
 import './App.css';
 import {TiktokProvider} from "./store.js";
-import Video from "./components/Video.jsx";
+import Home from "./components/Home.jsx";
 
 function App() {
   return (
     <TiktokProvider>
       <div className="App">
-        <Video/>
+
       </div>
     </TiktokProvider>
   );
