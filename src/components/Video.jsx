@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import { tiktokContext } from "../store.js";
 import styles from "./Video.module.css";
 
@@ -7,27 +7,27 @@ import VideoSidebar from "./VideoSidebar.jsx";
 
 export default function Video() {
   const { store, dispatch } = useContext(tiktokContext);
+  const videoRef = useRef(null);
 
   const url =
-    "https://v16-web.tiktok.com/video/tos/useast2a/tos-useast2a-ve-0068c004/2362532506c24a66be8a02a69273732d/?a=1988&br=2652&bt=1326&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&expire=1621528828&l=2021052010401601011500407009147EAD&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&policy=2&qs=0&rc=M2tmOHM1Ojc6dTMzMzczM0ApZDpnZmVmM2QzNzM3OmVmaWdeYm1nLjE0bWlfLS1iMTZzczIuNTZeYDNgNTM2XmFhMDU6Yw%3D%3D&signature=1d5bb90bf38621840fe475814dd4b591&tk=tt_webid_v2&vl=&vr=";
+    "https://v16-web.tiktok.com/video/tos/alisg/tos-alisg-pve-0037c001/881a1d3793e34f6796360e2a24eacb00/?a=1988&br=1914&bt=957&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&expire=1621585663&l=202105210227300102340821964900FAB4&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&policy=2&qs=0&rc=M3Zxb2VvOWtseTMzZzczM0ApOTNlZzZpOTtmNzQzNjs8OmcxYXMzMnBlbTVfLS02MTRzcy8vMmMtYzJhNjI1NV40NjE6Yw%3D%3D&signature=77d37f0848cbc2ee1eee8ee9b1517754&tk=tt_webid_v2&vl=&vr=";
+
+  const onVideoPress = () => {
+    // videoRef.current;
+  };
 
   return (
     <div className={styles.video}>
-      {/* <h1>TIKTOK VIDEO HERE</h1> */}
-      {/* <video src="https://www.tiktok.com/@sosolomon22/video/6941277610936732930"></video> */}
-      {/* <iframe
+      <iframe
         title="video"
+        ref={videoRef}
+        onClick={onVideoPress}
+        allow="autoplay"
         src={url}
         className={styles.iframeVid}
         frameborder="0"
-      ></iframe> */}
+      ></iframe>
 
-      <video
-        title="video"
-        src={url}
-        className={styles.iframeVid}
-        frameborder="0"
-      ></video>
       {/* <video src={url}></video> */}
       {/* <VideoFooter />
       <VideoSidebar /> */}
