@@ -5,8 +5,15 @@ import styles from "./VideoFooter.module.css";
 export default function VideoFooter() {
   const { store, dispatch } = useContext(tiktokContext);
   return (
-    <div>
-      <h1>TIKTOK FOOTER HERE</h1>
+    <div className={styles.videoFooter}>
+      <div className={styles.videoFooterText}>
+        <h3>@iannyip</h3>
+        <p>This is my description</p>
+      </div>
+      <img
+        className={styles.record}
+        src="https://static.thenounproject.com/png/934821-200.png"
+      ></img>
     </div>
   );
 }
