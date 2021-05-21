@@ -11,8 +11,8 @@ export default function VideoFooter() {
       <div className={styles.videoFooterText}>
         <h3>@iannyip</h3>
         <p>This is my description</p>
-        <div>
-          <MusicNoteIcon />
+        <div className={styles.musicTicker}>
+          <MusicNoteIcon className={styles.musicTickericon} />
           {/* <MoveStuffAround /> */}
           <Ticker mode="smooth">
             {({ index }) => (
