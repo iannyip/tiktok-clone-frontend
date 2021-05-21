@@ -29,8 +29,8 @@ export default function Video() {
       ></iframe>
 
       {/* <video src={url}></video> */}
-      {/* <VideoFooter />
-      <VideoSidebar /> */}
+      <VideoFooter />
+      {/* <VideoSidebar /> */}
     </div>
   );
 }
