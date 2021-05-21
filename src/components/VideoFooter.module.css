@@ -3,10 +3,15 @@
   bottom: 300px;
   color: white;
   display: flex;
+  padding: 0px 10px;
 }
 
 .videoFooterText {
   flex: 1;
+}
+
+.musicTicker-icon {
+  position: absolute;
 }
 
 .record {
