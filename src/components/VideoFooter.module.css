@@ -1,0 +1,30 @@
+.videoFooter {
+  position: relative;
+  bottom: 300px;
+  color: white;
+  display: flex;
+  padding: 0px 10px;
+}
+
+.videoFooterText {
+  flex: 1;
+}
+
+.musicTicker-icon {
+  position: absolute;
+}
+
+.record {
+  height: 50px;
+  animation: record-spin infinite 5s linear;
+  filter: invert(1);
+}
+
+@keyframes record-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
