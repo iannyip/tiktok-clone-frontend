@@ -1,0 +1,13 @@
+.video {
+  position: relative;
+  border: 1px solid black;
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+.iframeVid {
+  height: 100%;
+  width: 100%;
+}
