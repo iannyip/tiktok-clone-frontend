@@ -22,11 +22,11 @@ export default function Video() {
   };
   // this one can be used
   const spookyurl =
-    "https://v16.tiktokcdn.com/5f61f7cef6a513ab259ea840e95e6a5c/60a77d07/video/tos/useast2a/tos-useast2a-pve-0068/6a9c330a632443a29f80253bf618d1b1/?a=1233&br=1434&bt=717&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&l=202105210327220102341060152104FE16&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=MzRtZTpoamU7NTMzNzczM0ApNGRoZjo8OGQ0N2VpMzlpM2c0cTEzYzRkZ15gLS1kMTZzczMwMi8tNjJjMWJhMjQzL2A6Yw%3D%3D&vl=&vr=";
+    "https://v39-as.tiktokcdn.com/ebc028ba6ef59b11441de4440d7a33d7/60a9187f/video/tos/useast2a/tos-useast2a-ve-0068c003/91399ca741024f3ba5972865d8405f6c/?a=1233&br=1770&bt=885&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&l=202105220842420101150790641B863BE7&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=ajc5b3V4bDh2NTMzNzczM0ApPDk1O2kzZDw1N2ZmZzo7ZGduZXMzbzVeY2dgLS1kMTZzczZhXjNeYS4yYTYtNjEzNGE6Yw%3D%3D&vl=&vr=";
 
   return (
     <div className={styles.video}>
-      ​
+
       <video
         className={styles.iframeVid}
         loop
@@ -35,7 +35,7 @@ export default function Video() {
         src={spookyurl}
       ></video>
       <VideoFooter />
-      {/* <VideoSidebar /> */}
+      <VideoSidebar />
     </div>
   );
 }
