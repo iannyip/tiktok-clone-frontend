@@ -7,8 +7,10 @@ function App() {
   return (
     <TiktokProvider>
       <div className="App">
-        {/* <Home/> */}
-        <LoginPage/>
+        <div className="MobileView">
+          <Home/>
+          {/* <LoginPage/> */}
+        </div>
       </div>
     </TiktokProvider>
   );
