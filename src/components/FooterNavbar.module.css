@@ -2,25 +2,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 8px;
 }
 
 .footerNavbar {
   list-style: none;
   display: block;
   color: white;
-  background-color: black;
+  /* background-color: black; */
+  background-image: linear-gradient(rgba(255, 0, 0, 0), black);
   position: absolute;
   bottom: 0;
-  left: 38px;
+  margin: 0px;
+  padding: 5px 0px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 80%;
-  height: 50px;
+  width: 100%;
 }
 
-.li {
+.footerNavbar li {
   text-align: center;
-  font-size: 10px;
+}
+.footerNavbar li p {
+  margin: 0;
+  font-size: 9px;
 }

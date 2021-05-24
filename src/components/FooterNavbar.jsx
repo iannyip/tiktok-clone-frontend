@@ -16,24 +16,24 @@ export default function FooterNavbar() {
     <div className={styles.FooterStyle}>
       <ul className={styles.footerNavbar}>
         <li>
-          <HomeIcon fontSize="large" />
+          <HomeIcon fontSize="default" />
           <p>Home</p>
         </li>
         <li>
           <p className="icon">
-            <SearchIcon fontSize="large" />
+            <SearchIcon fontSize="default" />
           </p>
           <p>Discover</p>
         </li>
         <li>
-          <AddBoxIcon fontSize="large" />
+          <AddBoxIcon fontSize="default" />
         </li>
         <li>
-          <SmsOutlinedIcon fontSize="large" />
+          <SmsOutlinedIcon fontSize="default" />
           <p>Inbox</p>
         </li>
         <li>
-          <PersonOutlineOutlinedIcon fontSize="large" />
+          <PersonOutlineOutlinedIcon fontSize="default" />
           <p>Me</p>
         </li>
       </ul>
