@@ -1,5 +1,6 @@
 import React, {useReducer, useContext} from "react";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 // ------- STATE SETUP
 export const initialState = {
@@ -96,7 +97,6 @@ export function subtractLike(dispatch, likes) {
 
 // get the number of likes a certain video has
 export function loadLikes (dispatch) {
-  let likes;
   axios
     // TODO: video id is hard coded, needs to be changed!!
       .get(BACKEND_URL + '/likes/1')
