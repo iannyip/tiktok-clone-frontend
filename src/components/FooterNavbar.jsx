@@ -14,11 +14,21 @@ export default function FooterNavbar() {
     const { store, dispatch } = useContext(tiktokContext);
     return (
         <ul className={styles.footerNavbar}>
-            <li><HomeIcon />Home</li>
-            <li><SearchIcon />Discover</li>
-            <li><AddBoxIcon /></li>
-            <li><SmsOutlinedIcon />Inbox</li>
-            <li><PersonOutlineOutlinedIcon />Me</li>
+            <li><HomeIcon fontSize="large" />
+                <p>Home</p>
+            </li>
+            <li>
+                <p className="icon"><SearchIcon fontSize="large" /></p>
+                <p>Discover</p>
+            </li>
+            <li><AddBoxIcon fontSize="large" />
+            </li>
+            <li><SmsOutlinedIcon fontSize="large" />
+                <p>Inbox</p>
+            </li>
+            <li><PersonOutlineOutlinedIcon fontSize="large" />
+                <p>Me</p>
+            </li>
         </ul>
     )
 }
