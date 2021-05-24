@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import styles from "./Login.module.css";
+import styles from "./LoginPage.module.css";
 import { tiktokContext } from "../store.js";
 
 export default function Login() {
