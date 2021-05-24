@@ -5,6 +5,16 @@
   place-items: center;
 }
 
+.MobileView {
+  background-color: white;
+  position: relative;
+  height: 750px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
