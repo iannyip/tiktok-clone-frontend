@@ -67,7 +67,7 @@ const BACKEND_URL = 'http://localhost:3004';
 // update likes table and return number of likes a video has
 export function addLike(dispatch, likes) {
   axios
-    .post(BACKEND_URL + '/addLikes', {
+    .post(BACKEND_URL + '/addLike', {
       // TODO: like id is hardcoded, needs to be changed !!!
       videoId: 1,
     })

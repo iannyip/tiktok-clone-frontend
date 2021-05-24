@@ -6,6 +6,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import ShareIcon from '@material-ui/icons/Share';
 import CommentIcon from '@material-ui/icons/Comment';
 import axios from "axios";
+import cookieParser from 'cookie-parser';
 import {
   addLike,
   subtractLike,
