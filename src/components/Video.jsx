@@ -4,6 +4,7 @@ import styles from "./Video.module.css";
 
 import VideoFooter from "./VideoFooter.jsx";
 import VideoSidebar from "./VideoSidebar.jsx";
+import FooterNavbar from "./FooterNavbar.jsx";
 
 export default function Video() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -21,21 +22,20 @@ export default function Video() {
     }
   };
   // this one can be used
-  const spookyurl =
-    "https://v16.tiktokcdn.com/5f61f7cef6a513ab259ea840e95e6a5c/60a77d07/video/tos/useast2a/tos-useast2a-pve-0068/6a9c330a632443a29f80253bf618d1b1/?a=1233&br=1434&bt=717&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&l=202105210327220102341060152104FE16&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=MzRtZTpoamU7NTMzNzczM0ApNGRoZjo8OGQ0N2VpMzlpM2c0cTEzYzRkZ15gLS1kMTZzczMwMi8tNjJjMWJhMjQzL2A6Yw%3D%3D&vl=&vr=";
+  const spookyurl = "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4";
 
   const caturl =
     "https://assets.mixkit.co/videos/preview/mixkit-father-and-his-little-daughter-eating-marshmallows-in-nature-39765-large.mp4";
 
   return (
     <div className={styles.video}>
-      ​
+
       <video
         className={styles.iframeVid}
         loop
         onClick={videoPress}
         ref={videoRef}
-        src={caturl}
+        src={spookyurl}
       >
         {/* <source
           src="https://v16-web.tiktok.com/video/tos/useast2a/tos-useast2a-pve-0068/8b447dff694147b282624582b5d91574/?a=1988&br=1342&bt=671&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&expire=1621849001&l=202105240336260101150040671F0A2628&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&policy=2&qs=0&rc=M2tzdmk8c2lxNTMzNzczM0ApOzZnOTk4N2Q8N2kzNjw7aGc1cm0vZDZfa2BgLS1kMTZzc19hMjRgYzJiLWMwMmJhMjE6Yw%3D%3D&signature=2140d9a12872b209ad8043beac5d8a49&tk=tt_webid_v2&vl=&vr="
@@ -44,6 +44,8 @@ export default function Video() {
       </video>
       <VideoFooter />
       {/* <VideoSidebar /> */}
+      <FooterNavbar />
+      <VideoSidebar />
     </div>
   );
 }
