@@ -1,6 +1,6 @@
 .video {
   position: relative;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   object-fit: fill;
   height: 100%;
   width: 100%;
@@ -10,4 +10,5 @@
 .iframeVid {
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }

@@ -5,6 +5,15 @@
   place-items: center;
 }
 
+.MobileView {
+  background-color: pink;
+  position: relative;
+  height: 750px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
