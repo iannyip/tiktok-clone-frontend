@@ -4,6 +4,7 @@ import styles from "./Video.module.css";
 
 import VideoFooter from "./VideoFooter.jsx";
 import VideoSidebar from "./VideoSidebar.jsx";
+import FooterNavbar from "./FooterNavbar.jsx";
 
 export default function Video() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -26,7 +27,7 @@ export default function Video() {
 
   return (
     <div className={styles.video}>
-      ​
+
       <video
         className={styles.iframeVid}
         loop
@@ -36,6 +37,7 @@ export default function Video() {
       ></video>
       <VideoFooter />
       {/* <VideoSidebar /> */}
+      <FooterNavbar />
     </div>
   );
 }
