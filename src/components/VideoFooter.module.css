@@ -30,6 +30,7 @@
   height: 50px;
   animation: record-spin infinite 5s linear;
   filter: invert(1);
+  align-self: flex-end;
 }
 
 @keyframes record-spin {

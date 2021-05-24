@@ -27,6 +27,7 @@ export default function VideoFooter() {
       <img
         className={styles.record}
         src="https://static.thenounproject.com/png/934821-200.png"
+        alt="..."
       ></img>
     </div>
   );
