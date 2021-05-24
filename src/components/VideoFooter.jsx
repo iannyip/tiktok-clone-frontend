@@ -13,19 +13,21 @@ export default function VideoFooter() {
         <p>This is my description</p>
         <div className={styles.musicTicker}>
           <MusicNoteIcon className={styles.musicTickericon} />
-          {/* <MoveStuffAround /> */}
-          <Ticker mode="smooth">
-            {({ index }) => (
-              <>
-                <p>Wow this is my song!</p>
-              </>
-            )}
-          </Ticker>
+          <div className={styles.musicTickerContainer}>
+            <Ticker mode="smooth">
+              {({ index }) => (
+                <>
+                  <p className={styles.musicTickerText}>Wow this is my song!</p>
+                </>
+              )}
+            </Ticker>
+          </div>
         </div>
       </div>
       <img
         className={styles.record}
         src="https://static.thenounproject.com/png/934821-200.png"
+        alt="..."
       ></img>
     </div>
   );
