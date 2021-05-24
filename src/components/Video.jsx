@@ -25,7 +25,7 @@ export default function Video() {
     "https://v16.tiktokcdn.com/5f61f7cef6a513ab259ea840e95e6a5c/60a77d07/video/tos/useast2a/tos-useast2a-pve-0068/6a9c330a632443a29f80253bf618d1b1/?a=1233&br=1434&bt=717&cd=0%7C0%7C1&ch=0&cr=0&cs=0&cv=1&dr=0&ds=3&er=&l=202105210327220102341060152104FE16&lr=tiktok_m&mime_type=video_mp4&net=0&pl=0&qs=0&rc=MzRtZTpoamU7NTMzNzczM0ApNGRoZjo8OGQ0N2VpMzlpM2c0cTEzYzRkZ15gLS1kMTZzczMwMi8tNjJjMWJhMjQzL2A6Yw%3D%3D&vl=&vr=";
 
   const caturl =
-    "https://v19-us.tiktokcdn.com/a44bc312a252e8bea02d5bdc41cf7446/60ab77b4/video/tos/useast2a/tos-useast2a-ve-0068c001/7ceb0662f84f4d769e51458eef7a47dc/?a=1233&br=590&bt=295&cd=0%7C0%7C0&ch=0&cr=0&cs=0&cv=1&dr=0&ds=6&er=&l=202105240353420101901851302600EFDF&lr=&mime_type=video_mp4&net=0&pl=0&qs=4&rc=M2tzdmk8c2lxNTMzNzczM0ApNDk4ZDw6ZTxlN2k1Mzc4NGc1cm0vZDZfa2BgLS1kMTZzc2NfXi4tYjNiLWExMjIuYTM6Yw%3D%3D&vl=&vr=";
+    "https://assets.mixkit.co/videos/preview/mixkit-father-and-his-little-daughter-eating-marshmallows-in-nature-39765-large.mp4";
 
   return (
     <div className={styles.video}>
