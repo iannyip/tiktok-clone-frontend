@@ -4,6 +4,7 @@ import styles from "./Video.module.css";
 
 import VideoFooter from "./VideoFooter.jsx";
 import VideoSidebar from "./VideoSidebar.jsx";
+import FooterNavbar from "./FooterNavbar.jsx";
 
 export default function Video() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -21,14 +22,11 @@ export default function Video() {
     }
   };
   // this one can be used
-  const spookyurl = "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4";
-
-  const caturl =
-    "https://v19-us.tiktokcdn.com/a44bc312a252e8bea02d5bdc41cf7446/60ab77b4/video/tos/useast2a/tos-useast2a-ve-0068c001/7ceb0662f84f4d769e51458eef7a47dc/?a=1233&br=590&bt=295&cd=0%7C0%7C0&ch=0&cr=0&cs=0&cv=1&dr=0&ds=6&er=&l=202105240353420101901851302600EFDF&lr=&mime_type=video_mp4&net=0&pl=0&qs=4&rc=M2tzdmk8c2lxNTMzNzczM0ApNDk4ZDw6ZTxlN2k1Mzc4NGc1cm0vZDZfa2BgLS1kMTZzc2NfXi4tYjNiLWExMjIuYTM6Yw%3D%3D&vl=&vr=";
+  const spookyurl =
+    "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4";
 
   return (
     <div className={styles.video}>
-
       <video
         className={styles.iframeVid}
         loop
