@@ -1,6 +1,6 @@
 .videoFooter {
   position: relative;
-  bottom: 300px;
+  bottom: 200px;
   color: white;
   display: flex;
   padding: 0px 10px;
@@ -10,8 +10,20 @@
   flex: 1;
 }
 
-.musicTicker-icon {
+.musicTicker {
+  position: relative;
+}
+
+.musicTickericon {
   position: absolute;
+}
+
+.musicTickerContainer {
+  margin-left: 10%;
+}
+
+.musicTickerText {
+  margin: 0px;
 }
 
 .record {
