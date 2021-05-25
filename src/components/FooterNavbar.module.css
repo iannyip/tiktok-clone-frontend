@@ -29,7 +29,7 @@
 }
 
 /* This generic a tag formatting removes a tag formatting */
-a {
+.footerNavbar a {
   text-decoration: none;
   color: white;
 }
