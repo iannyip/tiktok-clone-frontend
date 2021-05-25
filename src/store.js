@@ -144,7 +144,8 @@ export function getVideosForYou (dispatch) {
   axios
   .get(BACKEND_URL + '/foryou')
   .then((result) => {
-    console.log(result);
+    console.log(result.data);
+    dispatch(loadVideosForYou(result.data))
   })
   .catch((error) => {console.log(error)})
 }
