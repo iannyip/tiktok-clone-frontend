@@ -39,8 +39,10 @@ export default function VideoSidebar() {
     subtractLike(dispatch, likes);
   }
 
+  // TODO: image src need to be changed , hardcoded for now
   return (
     <div className={styles.videoSideBar}>
+      <img src="https://image.shutterstock.com/image-photo/self-portrait-beautiful-chinese-girl-260nw-1289866381.jpg" className={styles.rounded} />
       <div className={styles.videoSideBar__button}>
         {liked ? (
           <FavoriteIcon fontSize="large" onClick={handleUnlikeClick} />
