@@ -5,6 +5,7 @@ import LoginPage from "./components/LoginPage.jsx"
 import FooterNavbar from "./components/FooterNavbar.jsx";
 import {
   BrowserRouter as Router,
+  Redirect,
   Switch,
   Route,
 } from "react-router-dom";
@@ -16,6 +17,7 @@ function App() {
         <Router>
           <div className="MobileView">
             <Switch>
+              <Redirect exact from="/" to="/home" />
               <Route path="/home">
                 <Home/>
               </Route>
