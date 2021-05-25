@@ -107,4 +107,11 @@ export function loadLikes (dispatch) {
       .catch((error) => console.log(error))
 }
 
-
+export function login (username, password) {
+  axios
+  .post(BACKEND_URL + '/login', {username, password})
+  .then((result) => {
+    console.log(result);
+  })
+  .catch ((error) => console.log(error))
+}
