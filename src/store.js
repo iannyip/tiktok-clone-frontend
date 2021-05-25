@@ -13,8 +13,7 @@ export const initialState = {
   following: null,
   followers: null,
   likes: null,
-  videos: [],
-  videoArr: [],
+  videosForYou: [],
 };
 
 const UPDATE_LIKES = "UPDATE_LIKES";
