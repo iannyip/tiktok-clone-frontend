@@ -8,7 +8,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined";
-import Home from "./Home";
+
+import { Link } from "react-router-dom";
 
 export default function FooterNavbar() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -16,8 +17,10 @@ export default function FooterNavbar() {
     <nav className={styles.FooterStyle}>
       <ul className={styles.footerNavbar}>
         <li>
-          <HomeIcon fontSize="default" />
-          <p>Home</p>
+          <Link to="/Home">
+            <HomeIcon fontSize="default" />
+            <p>Home</p>
+          </Link>
         </li>
         <li>
           <p className="icon">
@@ -33,8 +36,10 @@ export default function FooterNavbar() {
           <p>Inbox</p>
         </li>
         <li>
-          <PersonOutlineOutlinedIcon fontSize="default" />
-          <p>Me</p>
+          <Link to="/Me">
+            <PersonOutlineOutlinedIcon fontSize="default" />
+            <p>Me</p>
+          </Link>
         </li>
       </ul>
     </nav>
