@@ -7,30 +7,38 @@ export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
 
   console.log(store);
+  const { loggedInUserId, isUserLoggedIn } = store;
 
   useEffect(() => {
     getVideosForYou(dispatch);
   }, []);
 
   const { videosForYou } = store;
+  console.log(videosForYou);
   const videosJSX = videosForYou.map((video) => {
+    const likers = video.likes.map((liker) => liker.userId);
+    console.log(likers);
     const videoObj = {
+      videoId: video.id,
       videourl: video.url,
       userprofileurl: video.user.profilePic,
       userId: video.user.id,
       username: video.user.username,
       description: video.description,
       song: video.music,
-      likes: 100,
+      userliked: isUserLoggedIn && likers.includes(loggedInUserId),
+      likes: video.likes.length,
       comments: 100,
       shares: 100,
     };
+    console.log(video);
     console.log(videoObj);
-    return <Video videoObj={videoObj} />;
+    return <Video key={video.id} videoObj={videoObj} />;
   });
 
   // This is a sample of a video object
   const videoObjSample = {
+    videoId: 1,
     videourl:
       "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4",
     userprofileurl:
@@ -39,10 +47,17 @@ export default function Home() {
     username: "iannyip",
     description: "This is my description",
     song: "Wow this is my song!",
+    userliked: false,
     likes: 100,
     comments: 100,
     shares: 100,
   };
 
-  return <div className={styles.homeVideos}>{videosJSX}</div>;
+  return (
+    <div className={styles.homeVideos}>
+      {/* <Video videoObj={videoObjSample} />
+      <Video videoObj={videoObjSample} /> */}
+      {videosJSX}
+    </div>
+  );
 }
