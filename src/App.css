@@ -5,6 +5,12 @@
   place-items: center;
 }
 
+/* This generic a tag formatting removes a tag formatting */
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .MobileView {
   background-color: white;
   position: relative;
