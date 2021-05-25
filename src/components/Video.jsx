@@ -14,6 +14,7 @@ export default function Video({ videoObj }) {
   const videoPress = () => {
     if (play) {
       videoRef.current.pause();
+      console.log(store);
       setPlay(false);
     } else {
       videoRef.current.play();

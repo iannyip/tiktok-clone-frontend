@@ -12,7 +12,25 @@ export default function Home() {
     getVideosForYou(dispatch);
   }, []);
 
-  const videoObj = {
+  const { videosForYou } = store;
+  const videosJSX = videosForYou.map((video) => {
+    const videoObj = {
+      videourl: video.url,
+      userprofileurl: video.user.profilePic,
+      userId: video.user.id,
+      username: video.user.username,
+      description: video.description,
+      song: video.music,
+      likes: 100,
+      comments: 100,
+      shares: 100,
+    };
+    console.log(videoObj);
+    return <Video videoObj={videoObj} />;
+  });
+
+  // This is a sample of a video object
+  const videoObjSample = {
     videourl:
       "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4",
     userprofileurl:
@@ -25,26 +43,6 @@ export default function Home() {
     comments: 100,
     shares: 100,
   };
-  const videoObj2 = {
-    videourl:
-      "https://assets.mixkit.co/videos/preview/mixkit-mysterious-pale-looking-fashion-woman-at-winter-39878-large.mp4",
-    userprofileurl:
-      "https://image.shutterstock.com/image-photo/self-portrait-beautiful-chinese-girl-260nw-1289866381.jpg",
-    userId: 2,
-    username: "penny",
-    description: "This is my description no.2",
-    song: "This is song no. 2!",
-    likes: 200,
-    comments: 215,
-    shares: 200,
-  };
 
-  return (
-    <div className={styles.homeVideos}>
-      <Video videoObj={videoObj} />
-      <Video videoObj={videoObj2} />
-      <Video videoObj={videoObj} />
-      <Video videoObj={videoObj2} />
-    </div>
-  );
+  return <div className={styles.homeVideos}>{videosJSX}</div>;
 }
