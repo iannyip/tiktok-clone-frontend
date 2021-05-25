@@ -19,6 +19,7 @@ export const initialState = {
 const UPDATE_LIKES = "UPDATE_LIKES";
 const LOAD_LIKES = "LOAD_LIKES";
 const LOGIN_USER = "LOGIN_USER";
+const LOAD_VIDEOS = "LOAD_VIDEOS";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -29,6 +30,8 @@ export function tiktokReducer(state, action) {
       return {...state, likes: action.payload.likes};
     case LOGIN_USER: 
       return {...state, loggedInUser: action.payload.logInUser}
+    case LOAD_VIDEOS:
+      return {...state, videosForYou: action.payload.videos}
     default:
       return state;
   }
@@ -59,6 +62,15 @@ function loginUser(userObj) {
     type: LOGIN_USER,
     payload: {
       logInUser: userObj
+    }
+  }
+}
+
+function loadVideosForYou(videoArr){
+  return{
+    type: LOAD_VIDEOS,
+    payload: {
+      videos: videoArr
     }
   }
 }
@@ -126,4 +138,14 @@ export function login (dispatch, username, password) {
     dispatch(loginUser(result.data));
   })
   .catch ((error) => console.log(error))
+}
+
+export function getVideosForYou (dispatch) {
+  axios
+  .get(BACKEND_URL + '/foryou')
+  .then((result) => {
+    console.log(result.data);
+    dispatch(loadVideosForYou(result.data))
+  })
+  .catch((error) => {console.log(error)})
 }
