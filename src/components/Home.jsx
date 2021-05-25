@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Video from "./Video.jsx";
-import { tiktokContext } from "../store.js";
+import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
 
 export default function Home() {
-  const { state, dispatch } = useContext(tiktokContext);
+  const { store, dispatch } = useContext(tiktokContext);
+
+  console.log(store);
+
+  useEffect(() => {
+    getVideosForYou(dispatch);
+  }, []);
+
   const videoObj = {
     videourl:
       "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4",
@@ -28,7 +35,7 @@ export default function Home() {
     description: "This is my description no.2",
     song: "This is song no. 2!",
     likes: 200,
-    comments: 200,
+    comments: 215,
     shares: 200,
   };
 
