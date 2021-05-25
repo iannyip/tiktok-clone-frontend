@@ -33,7 +33,7 @@ export default function VideoSidebar({ videoObj }) {
   const handleUnlikeClick = () => {
     setLiked(false);
     setLikesCount(likesCount - 1);
-    subtractLike(dispatch, likesCount);
+    subtractLike(dispatch, videoObj.videoId, loggedInUserId);
   };
 
   return (

@@ -95,14 +95,12 @@ export function addLike(dispatch, videoId, userId ) {
 }
 
 // update likes table and return number of likes a video has
-export function subtractLike(dispatch, likes) {
+export function subtractLike(dispatch, videoId, userId) {
   axios
     .post(BACKEND_URL + '/subtractLike', {
-      // TODO: like id is hardcoded, needs to be changed !!!
-      videoId : 1,
+      videoId, userId
     })
     .then((response) => {
-      console.log(response.data);
       dispatch(updateLikesAction(response.data.newCount))
       })
     .catch((error) => console.log(error))
