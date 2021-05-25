@@ -13,7 +13,7 @@ import Home from "./Home";
 export default function FooterNavbar() {
   const { store, dispatch } = useContext(tiktokContext);
   return (
-    <div className={styles.FooterStyle}>
+    <nav className={styles.FooterStyle}>
       <ul className={styles.footerNavbar}>
         <li>
           <HomeIcon fontSize="default" />
@@ -37,6 +37,6 @@ export default function FooterNavbar() {
           <p>Me</p>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 }
