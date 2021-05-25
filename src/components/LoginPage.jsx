@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styles from "./LoginPage.module.css";
-import { tiktokContext } from "../store.js";
+import { tiktokContext, login } from "../store.js";
 
 export default function Login() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -9,10 +9,13 @@ export default function Login() {
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
-    console.log(username);
   };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+  const handleSubmitBtnClick = () => {
+    console.log("button clickedd!!");
+    login(username, password);
   };
   return (
     <div className={styles.loginView}>
@@ -38,6 +41,7 @@ export default function Login() {
           />
           <button
             className={[styles.submitButton, styles.formStyles].join(" ")}
+            onClick={handleSubmitBtnClick}
           >
             Submit
           </button>
