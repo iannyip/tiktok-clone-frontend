@@ -14,8 +14,8 @@ export default function Login() {
     setPassword(event.target.value);
   };
   const handleSubmitBtnClick = () => {
-    console.log("button clickedd!!");
-    login(username, password);
+    login(dispatch, username, password);
+    console.log(store);
   };
   return (
     <div className={styles.loginView}>

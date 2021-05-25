@@ -56,8 +56,6 @@ export function loadLikesAction(likes) {
 }
 
 function loginUser(userObj) {
-  console.log("userObj: ");
-  console.log(userObj);
   return {
     type: LOGIN_USER,
     payload: {
