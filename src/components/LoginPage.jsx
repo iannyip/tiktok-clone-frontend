@@ -7,7 +7,6 @@ export default function Login() {
   return (
     <div className={styles.loginView}>
       <div>
-        <h1>This is the login page</h1>
         <div className={styles.userLogo}>
           <div className={styles.userLogoHead}></div>
           <div className={styles.userLogoBody}></div>
@@ -16,10 +15,12 @@ export default function Login() {
           <input
             className={[styles.usernameInput, styles.formStyles].join(" ")}
             type="text"
+            placeholder="username"
           />
           <input
             className={[styles.passwordInput, styles.formStyles].join(" ")}
             type="password"
+            placeholder="password"
           />
           <button
             className={[styles.submitButton, styles.formStyles].join(" ")}
