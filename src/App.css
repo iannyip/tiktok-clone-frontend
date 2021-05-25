@@ -8,7 +8,8 @@
 .MobileView {
   background-color: white;
   position: relative;
-  height: 750px;
+  height: 95%;
+  max-height: 750px;
   width: 80%;
   max-width: 400px;
   border-radius: 20px;
