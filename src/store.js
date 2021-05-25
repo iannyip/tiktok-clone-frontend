@@ -48,15 +48,6 @@ export function updateLikesAction(likes) {
   }
 }
 
-export function loadLikesAction(likes) {
-  return {
-    type: LOAD_LIKES,
-    payload: {
-      likes
-    }
-  }
-}
-
 function loginUser(userObj) {
   return {
     type: LOGIN_USER,
@@ -116,19 +107,6 @@ export function subtractLike(dispatch, likes) {
       })
     .catch((error) => console.log(error))
     
-}
-
-// get the number of likes a certain video has
-// This function is to be removed
-export function loadLikes (dispatch) {
-  axios
-    // TODO: video id is hard coded, needs to be changed!!
-      .get(BACKEND_URL + '/likes/1')
-      .then((response) => {
-        console.log(response.data)
-        dispatch(loadLikesAction(response.data.likes))
-      })
-      .catch((error) => console.log(error))
 }
 
 export function login (dispatch, username, password) {
