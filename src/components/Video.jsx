@@ -26,6 +26,8 @@ export default function Video({ videoObj }) {
       <video
         className={styles.iframeVid}
         loop
+        autoPlay
+        muted
         onClick={videoPress}
         ref={videoRef}
         src={videoObj.videourl}
