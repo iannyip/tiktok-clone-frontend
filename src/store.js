@@ -6,13 +6,13 @@ axios.defaults.withCredentials = true;
 export const initialState = {
   currentView: "Home",
   headerNav: "For You",
-  userId: null,
+  loggedInUserId: null,
   username: null,
-  loggedInUser: null,
+  loggedInUserInfo: null,
+  isUserLoggedIn: false,
   profilepic: null,
   following: null,
   followers: null,
-  likes: null,
   videosForYou: [],
 };
 
@@ -29,7 +29,7 @@ export function tiktokReducer(state, action) {
     case LOAD_LIKES:
       return {...state, likes: action.payload.likes};
     case LOGIN_USER: 
-      return {...state, loggedInUser: action.payload.logInUser}
+      return {...state, loggedInUserInfo: action.payload.logInUser, isUserLoggedIn: true, loggedInUserId: action.payload.logInUser.id}
     case LOAD_VIDEOS:
       return {...state, videosForYou: action.payload.videos}
     default:
@@ -90,15 +90,14 @@ export function TiktokProvider ({children}){
 const BACKEND_URL = 'http://localhost:3004';
 
 // update likes table and return number of likes a video has
-export function addLike(dispatch, likes) {
+export function addLike(dispatch, videoId, userId ) {
   axios
     .post(BACKEND_URL + '/addLike', {
-      // TODO: like id is hardcoded, needs to be changed !!!
-      videoId: 1,
+      userId, videoId
     })
     .then((response) => {
       console.log(response.data);
-      dispatch(updateLikesAction(response.data.newCount))
+      // dispatch(updateLikesAction(response.data.newCount))
       })
     .catch((error) => console.log(error))
     
@@ -120,6 +119,7 @@ export function subtractLike(dispatch, likes) {
 }
 
 // get the number of likes a certain video has
+// This function is to be removed
 export function loadLikes (dispatch) {
   axios
     // TODO: video id is hard coded, needs to be changed!!

@@ -5,37 +5,37 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import ShareIcon from "@material-ui/icons/Share";
 import CommentIcon from "@material-ui/icons/Comment";
-import axios from "axios";
-import cookieParser from "cookie-parser";
 import { addLike, subtractLike } from "../store";
+import { useHistory } from "react-router-dom";
 
 // like function works, need to set up route to display
 // all videos so we can get rid of the hard coded video id
 
 export default function VideoSidebar({ videoObj }) {
   const { store, dispatch } = useContext(tiktokContext);
-  const [liked, setLiked] = useState(false);
-  let likes = videoObj.likes;
+  const [liked, setLiked] = useState(videoObj.userliked);
+  const [likesCount, setLikesCount] = useState(videoObj.likes);
+  let history = useHistory();
 
-  useEffect(() => {
-    loadLikes(dispatch);
-  }, []);
+  const { isUserLoggedIn, loggedInUserId } = store;
 
   const handleLikeClick = () => {
-    console.log("likes +++++++", likes);
-    setLiked(true);
-    likes = likes + 1;
-    console.log("updated likes", likes);
-    addLike(dispatch, likes);
+    if (isUserLoggedIn && !videoObj.userliked) {
+      console.log("the user has not liked it before");
+      setLiked(true);
+      setLikesCount(likesCount + 1);
+      addLike(dispatch, videoObj.videoId, loggedInUserId);
+    } else {
+      history.push("/me");
+    }
   };
 
   const handleUnlikeClick = () => {
     setLiked(false);
-    likes = likes - 1;
-    subtractLike(dispatch, likes);
+    setLikesCount(likesCount - 1);
+    subtractLike(dispatch, likesCount);
   };
 
-  // TODO: image src need to be changed , hardcoded for now
   return (
     <div className={styles.videoSideBar}>
       <img src={videoObj.userprofileurl} className={styles.rounded} alt="..." />
@@ -48,7 +48,7 @@ export default function VideoSidebar({ videoObj }) {
             onClick={handleLikeClick}
           />
         )}
-        <p>{likes}</p>
+        <p>{likesCount}</p>
       </div>
       <div className={styles.videoSideBar__button}>
         <CommentIcon />
