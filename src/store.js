@@ -20,6 +20,7 @@ const UPDATE_LIKES = "UPDATE_LIKES";
 const LOAD_LIKES = "LOAD_LIKES";
 const LOGIN_USER = "LOGIN_USER";
 const LOAD_VIDEOS = "LOAD_VIDEOS";
+const USER_INFO = "USER_INFO";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -32,6 +33,8 @@ export function tiktokReducer(state, action) {
       return {...state, loggedInUserInfo: action.payload.logInUser, isUserLoggedIn: true, loggedInUserId: action.payload.logInUser.id}
     case LOAD_VIDEOS:
       return {...state, videosForYou: action.payload.videos}
+    case USER_INFO:
+      return {...state, loggedInUserInfo: action.payload.info}
     default:
       return state;
   }
@@ -66,6 +69,14 @@ function loadVideosForYou(videoArr){
   }
 }
 
+function loadUserInfo (userObj) {
+  return {
+    type: USER_INFO,
+    payload: {
+      info: userObj
+    }
+  }
+}
 
 
 // ------- PROVIDER
@@ -124,4 +135,14 @@ export function getVideosForYou (dispatch) {
     dispatch(loadVideosForYou(result.data))
   })
   .catch((error) => {console.log(error)})
+}
+
+export function getUserInfo (dispatch) {
+  axios
+    .get(BACKEND_URL + '/userInfo')
+    .then((response) => {
+      console.log('user info ======', response.data);
+      dispatch(loadUserInfo(response.data))
+    })
+    .catch((error) => console.log(error))
 }

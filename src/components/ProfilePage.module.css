@@ -1,0 +1,127 @@
+.profilePage {
+    position: relative;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-bottom: 0.5px solid black;
+}
+
+.header p {
+    margin-bottom: 5px;
+}
+
+.header span {
+    font-weight: bold;
+}
+
+.username {
+    display: flex;
+    width: 65%;
+    justify-content: center;
+}
+
+.picSection {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profilePic {
+    width: 14vh;
+    height: 14vh;
+    border-radius: 50%;
+}
+
+.picSection p {
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+}
+
+.following,
+.followers,
+.likes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small;
+    padding-left: 15px;
+    padding-right: 15px;  
+    color:gray;
+}
+
+.likes {
+    padding-left: 20px;
+}
+.borderRight {
+    border-right: 0.75px solid lightgray;
+    position: absolute;
+    top: 25%;
+    bottom: 40%;
+    right: 0;
+}
+.number {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: small;
+    color: black;
+}
+
+.following p,
+.followers p,
+.likes p {
+    margin-top: 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid lightgray;
+}
+
+.editProfile {
+    width: 50%;
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.editProfile,
+.bookmarks {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.videos {
+    color: grey;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+}
+
+.userVideo {
+    
+}
+.thumbnail {
+    height: 150px;
+    width: 150px;
+    
+}

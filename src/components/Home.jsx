@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
+import ProfilePage from "./ProfilePage.jsx";
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
