@@ -58,7 +58,7 @@ export default function Home() {
     <div className={styles.homeVideos}>
       {/* <Video videoObj={videoObjSample} />
       <Video videoObj={videoObjSample} /> */}
-      {videosJSX}
+      <ProfilePage />
     </div>
   );
 }

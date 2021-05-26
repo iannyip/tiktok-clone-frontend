@@ -109,7 +109,19 @@
     color: grey;
     padding-top: 8px;
     padding-bottom: 8px;
+    padding-left: 0;
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: space-around;
+    list-style: none;
+    margin: 0;
+}
+
+.userVideo {
+    
+}
+.thumbnail {
+    height: 150px;
+    width: 150px;
+    
 }
