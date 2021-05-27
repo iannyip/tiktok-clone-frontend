@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import useScrollPosition from "@react-hook/window-scroll";
 import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
@@ -7,9 +8,11 @@ import ProfilePage from "./ProfilePage.jsx";
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
   const [height, setHeight] = useState(0);
+  const scrollY = useScrollPosition(60 /*frames per second*/);
   const [queriedVideos, setQueriedVideos] = useState(false);
   const [loaded10Videos, setLoaded10Videos] = useState([]);
   const [allVideos, setAllVideos] = useState([]);
+  const refScroller = useRef(null);
 
   console.log(store);
   const { loggedInUserId, isUserLoggedIn } = store;
@@ -45,7 +48,18 @@ export default function Home() {
     }
   }, [queriedVideos]);
 
+  useEffect(() => {
+    console.log(scrollY);
+  }, [scrollY]);
+
+  const handleScroll = () => {
+    console.log("scrolled");
+    console.log(scrollY);
+    console.log(refScroller.current.scrollTop);
+  };
+
   console.log(loaded10Videos);
+  console.log(height);
   const videosJSX = loaded10Videos.map((video) => {
     const likersAsObj = video.likes;
     const likers = likersAsObj.map((liker) => liker["user_id"]);
@@ -62,8 +76,6 @@ export default function Home() {
       comments: 100,
       shares: 100,
     };
-    // console.log(video);
-    // console.log(videoObj);
     return <Video key={video.id} videoObj={videoObj} />;
   });
 
@@ -85,10 +97,16 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.homeVideos}>
-      <Video videoObj={videoObjSample} />
-      <Video videoObj={videoObjSample} />
+    <div
+      className={styles.homeVideos}
+      ref={refScroller}
+      onScroll={handleScroll}
+    >
+      {/* <div className={styles.scrollDiv}> */}
+      {/* <Video videoObj={videoObjSample} />
+      <Video videoObj={videoObjSample} /> */}
       {videosJSX}
     </div>
+    // </div>
   );
 }

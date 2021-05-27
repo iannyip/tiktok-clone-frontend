@@ -20,3 +20,7 @@ html {
   -ms-overflow-style: none; /* IE and Edge*/
   scrollbar-width: none; /* Firefox */
 }
+
+.scrollDiv {
+  margin: 0px;
+}
