@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import useScrollPosition from "@react-hook/window-scroll";
 import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
@@ -6,19 +7,77 @@ import ProfilePage from "./ProfilePage.jsx";
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
+  const [height, setHeight] = useState(0);
+  const [queriedVideos, setQueriedVideos] = useState(false);
+  const [reachingEnd, setReachingEnd] = useState(false);
+  const [loadedNVideos, setLoadedNVideos] = useState([]);
+  const [allVideos, setAllVideos] = useState([]);
+  const refScroller = useRef(null);
 
   console.log(store);
   const { loggedInUserId, isUserLoggedIn } = store;
 
+  // makes backend query, gets the window heightt
   useEffect(() => {
+    const newHeight = window.innerHeight;
+    setHeight(newHeight);
     getVideosForYou(dispatch);
   }, []);
 
+  // Once store contains all the videos,
+  // Create a copy in this component for local management
   const { videosForYou } = store;
-  console.log(videosForYou);
-  const videosJSX = videosForYou.map((video) => {
-    const likers = video.likes.map((liker) => liker.userId);
-    console.log(likers);
+  useEffect(() => {
+    if (videosForYou.length > 0) {
+      setAllVideos([...videosForYou]);
+      setQueriedVideos(true);
+    }
+  }, [videosForYou]);
+
+  // Initially, we will load 5 videos into the queue
+  useEffect(() => {
+    if (queriedVideos === true) {
+      const initialize10 = [];
+      for (let i = 0; i < 5; i += 1) {
+        initialize10.push(allVideos.shift());
+      }
+      setAllVideos(allVideos);
+      setLoadedNVideos(initialize10);
+    }
+  }, [queriedVideos]);
+
+  // Each time the user reaches the last (5th) video
+  // We will -2 videos and +2 videos to the queue
+  useEffect(() => {
+    if (reachingEnd === true) {
+      for (let i = 0; i < 2; i += 1) {
+        loadedNVideos.shift();
+        loadedNVideos.push(allVideos.shift());
+      }
+      setAllVideos(allVideos);
+      setLoadedNVideos(loadedNVideos);
+      setReachingEnd(false);
+      // if user has reached the end of the list, reload all previous videos again
+      if (allVideos.length < 5) {
+        setAllVideos([...allVideos, ...videosForYou]);
+      }
+    }
+  }, [reachingEnd]);
+
+  // Function that checks if the user has reached the end of queue
+  // This runs each time user scrolls (onScroll)
+  const handleScroll = () => {
+    if (refScroller.current.scrollTop > 0.95 * height * 3) {
+      console.log("time for reload!");
+      setReachingEnd(true);
+    }
+  };
+
+  // use Map to render in a loop
+  // The 5 videos to be displayed at any time
+  const videosJSX = loadedNVideos.map((video) => {
+    const likersAsObj = video.likes;
+    const likers = likersAsObj.map((liker) => liker["user_id"]);
     const videoObj = {
       videoId: video.id,
       videourl: video.url,
@@ -28,12 +87,10 @@ export default function Home() {
       description: video.description,
       song: video.music,
       userliked: isUserLoggedIn && likers.includes(loggedInUserId),
-      likes: video.likes.length,
+      likes: likers.length,
       comments: 100,
       shares: 100,
     };
-    console.log(video);
-    console.log(videoObj);
     return <Video key={video.id} videoObj={videoObj} />;
   });
 
@@ -55,7 +112,11 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.homeVideos}>
+    <div
+      className={styles.homeVideos}
+      ref={refScroller}
+      onScroll={handleScroll}
+    >
       {/* <Video videoObj={videoObjSample} />
       <Video videoObj={videoObjSample} /> */}
       {videosJSX}
