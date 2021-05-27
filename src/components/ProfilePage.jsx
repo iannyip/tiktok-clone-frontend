@@ -30,68 +30,76 @@ export default function ProfilePage() {
   });
 
   return (
-    <div className={styles.profilePage}>
-      <header className={styles.header}>
-        <p>
-          <PersonAddOutlinedIcon />
-        </p>
-        <p className={styles.username}>
-          <span>{loggedInUserInfo.username}</span>
-          <ArrowDropDownOutlinedIcon />
-        </p>
-        <p>
-          <MoreVertOutlinedIcon />
-        </p>
-      </header>
+    <>
+      {loggedInUserInfo ? (
+        <div className={styles.profilePage}>
+          <header className={styles.header}>
+            <p>
+              <PersonAddOutlinedIcon />
+            </p>
+            <p className={styles.username}>
+              <span>{loggedInUserInfo.username}</span>
+              <ArrowDropDownOutlinedIcon />
+            </p>
+            <p>
+              <MoreVertOutlinedIcon />
+            </p>
+          </header>
 
-      <div className={styles.picSection}>
-        <img
-          src={loggedInUserInfo.profilePic}
-          className={styles.profilePic}
-          alt="..."
-        />
-        <p>@{loggedInUserInfo.username}</p>
-      </div>
-      <div className={styles.stats}>
-        <div className={styles.following}>
-          <div className={styles.borderRight}></div>
-          <p className={styles.number}>2</p>
-          <p>Following</p>
+          <div className={styles.picSection}>
+            <img
+              src={loggedInUserInfo.profilePic}
+              className={styles.profilePic}
+              alt="..."
+            />
+            <p>@{loggedInUserInfo.username}</p>
+          </div>
+          <div className={styles.stats}>
+            <div className={styles.following}>
+              <div className={styles.borderRight}></div>
+              <p className={styles.number}>2</p>
+              <p>Following</p>
+            </div>
+            <div className={styles.followers}>
+              <div className={styles.borderRight}></div>
+              <p className={styles.number}>2</p>
+              <p>Followers</p>
+            </div>
+            <div className={styles.likes}>
+              <p className={styles.number}>{totalLikes}</p>
+              <p>Like</p>
+            </div>
+          </div>
+          <div className={styles.buttons}>
+            <button type="submit" className={styles.editProfile}>
+              Edit profile
+            </button>
+            <button className={styles.bookmarks}>
+              <BookmarkBorderOutlinedIcon />
+            </button>
+          </div>
+          <ul className={styles.videos}>
+            <li>
+              <ViewColumnIcon onClick={handleUserVideosClick} />
+            </li>
+            <li>
+              <FavoriteBorderOutlinedIcon />
+            </li>
+            <li>
+              <LockOutlinedIcon />
+            </li>
+          </ul>
+          <div>
+            {loggedInUserInfo.videos.map((video) => {
+              return (
+                <video className={styles.thumbnail} src={video.url}></video>
+              );
+            })}
+          </div>
         </div>
-        <div className={styles.followers}>
-          <div className={styles.borderRight}></div>
-          <p className={styles.number}>2</p>
-          <p>Followers</p>
-        </div>
-        <div className={styles.likes}>
-          <p className={styles.number}>{totalLikes}</p>
-          <p>Like</p>
-        </div>
-      </div>
-      <div className={styles.buttons}>
-        <button type="submit" className={styles.editProfile}>
-          Edit profile
-        </button>
-        <button className={styles.bookmarks}>
-          <BookmarkBorderOutlinedIcon />
-        </button>
-      </div>
-      <ul className={styles.videos}>
-        <li>
-          <ViewColumnIcon onClick={handleUserVideosClick} />
-        </li>
-        <li>
-          <FavoriteBorderOutlinedIcon />
-        </li>
-        <li>
-          <LockOutlinedIcon />
-        </li>
-      </ul>
-      <div>
-        {loggedInUserInfo.videos.map((video) => {
-          return <video className={styles.thumbnail} src={video.url}></video>;
-        })}
-      </div>
-    </div>
+      ) : (
+        <p className={styles.errormsg}>Error rendering user profile</p>
+      )}
+    </>
   );
 }
