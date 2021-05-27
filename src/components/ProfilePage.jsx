@@ -25,8 +25,8 @@ export default function ProfilePage() {
 
   // this gets the total number of likes a user has received
   let totalLikes = 0;
-  loggedInUserInfo.videos.map((video) => {
-    return (totalLikes += video.likes.length);
+  loggedInUserInfo.videos.forEach((video) => {
+    totalLikes += video.likes.length;
   });
 
   return (
@@ -92,7 +92,11 @@ export default function ProfilePage() {
           <div>
             {loggedInUserInfo.videos.map((video) => {
               return (
-                <video className={styles.thumbnail} src={video.url}></video>
+                <video
+                  key={video.id}
+                  className={styles.thumbnail}
+                  src={video.url}
+                ></video>
               );
             })}
           </div>
