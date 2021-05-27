@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from "./Follow.module.css";
-import { tiktokContext } from "../store.js";
+import { getFollows, tiktokContext } from "../store.js";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
@@ -11,6 +11,9 @@ export default function Follow() {
     const [followers, setFollowers] = useState(false)
     const [suggested, setSuggested] = useState(false)
 
+    useEffect(() => {
+        getFollows();
+    })
     const handleFollowingClick = () => {
         setFollowing(true);
         setFollowers(false);
@@ -53,6 +56,9 @@ export default function Follow() {
             <div className={styles.searchInput}>
                 <p><SearchOutlinedIcon /></p>
                 <input type="text" placeholder="Search" />
+            </div>
+            <div className={styles.result}>
+
             </div>
         </>
     )
