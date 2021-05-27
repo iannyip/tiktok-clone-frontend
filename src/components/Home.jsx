@@ -3,6 +3,7 @@ import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
 import ProfilePage from "./ProfilePage.jsx";
+import Follow from './Follow.jsx';
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -58,7 +59,8 @@ export default function Home() {
     <div className={styles.homeVideos}>
       {/* <Video videoObj={videoObjSample} />
       <Video videoObj={videoObjSample} /> */}
-      {videosJSX}
+      {/* {videosJSX} */}
+      <Follow />
     </div>
   );
 }
