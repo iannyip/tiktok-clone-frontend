@@ -8,9 +8,9 @@ import ProfilePage from "./ProfilePage.jsx";
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
   const [height, setHeight] = useState(0);
-  const scrollY = useScrollPosition(60 /*frames per second*/);
   const [queriedVideos, setQueriedVideos] = useState(false);
-  const [loaded10Videos, setLoaded10Videos] = useState([]);
+  const [reachingEnd, setReachingEnd] = useState(false);
+  const [loadedNVideos, setLoadedNVideos] = useState([]);
   const [allVideos, setAllVideos] = useState([]);
   const refScroller = useRef(null);
 
@@ -18,7 +18,6 @@ export default function Home() {
   const { loggedInUserId, isUserLoggedIn } = store;
 
   useEffect(() => {
-    console.log("gettting all videos from backend!");
     const newHeight = window.innerHeight;
     setHeight(newHeight);
     getVideosForYou(dispatch);
@@ -27,40 +26,49 @@ export default function Home() {
   const { videosForYou } = store;
 
   useEffect(() => {
-    console.log("videosForYou has been loaded");
-    console.log(videosForYou);
     if (videosForYou.length > 0) {
-      console.log("actually loaded");
-      setAllVideos(videosForYou);
+      setAllVideos([...videosForYou]);
       setQueriedVideos(true);
     }
   }, [videosForYou]);
 
   useEffect(() => {
     if (queriedVideos === true) {
-      console.log("allVideos has been set!!");
       const initialize10 = [];
-      for (let i = 0; i < 10; i += 1) {
+      for (let i = 0; i < 5; i += 1) {
         initialize10.push(allVideos.shift());
       }
       setAllVideos(allVideos);
-      setLoaded10Videos(initialize10);
+      setLoadedNVideos(initialize10);
     }
   }, [queriedVideos]);
 
   useEffect(() => {
-    console.log(scrollY);
-  }, [scrollY]);
+    if (reachingEnd === true) {
+      for (let i = 0; i < 2; i += 1) {
+        loadedNVideos.shift();
+        loadedNVideos.push(allVideos.shift());
+        console.log(
+          `loadedNVideos: ${loadedNVideos.length}, allVideos: ${allVideos.length}`
+        );
+        console.log(videosForYou.length);
+      }
+      setAllVideos(allVideos);
+      setLoadedNVideos(loadedNVideos);
+      setReachingEnd(false);
+    }
+  }, [reachingEnd]);
 
   const handleScroll = () => {
-    console.log("scrolled");
-    console.log(scrollY);
-    console.log(refScroller.current.scrollTop);
+    if (refScroller.current.scrollTop > 0.95 * height * 3) {
+      console.log("time for reload!");
+      setReachingEnd(true);
+    }
   };
 
-  console.log(loaded10Videos);
-  console.log(height);
-  const videosJSX = loaded10Videos.map((video) => {
+  console.log("VIDEOS LOADED: ");
+  console.log(loadedNVideos);
+  const videosJSX = loadedNVideos.map((video) => {
     const likersAsObj = video.likes;
     const likers = likersAsObj.map((liker) => liker["user_id"]);
     const videoObj = {
