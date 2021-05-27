@@ -20,8 +20,8 @@ export default function ProfilePage() {
   const handleUserVideosClick = () => {};
 
   const { loggedInUserInfo } = store;
-  console.log("user info========", loggedInUserInfo);
-  console.log("video urls", loggedInUserInfo.videoUrls);
+  //   console.log("user info========", loggedInUserInfo);
+  //   console.log("video urls", loggedInUserInfo.videoUrls);
 
   return (
     <div className={styles.profilePage}>
@@ -30,7 +30,7 @@ export default function ProfilePage() {
           <PersonAddOutlinedIcon />
         </p>
         <p className={styles.username}>
-          <span>{loggedInUserInfo.username}</span>
+          {/* <span>{loggedInUserInfo.username}</span> */}
           <ArrowDropDownOutlinedIcon />
         </p>
         <p>
@@ -38,7 +38,7 @@ export default function ProfilePage() {
         </p>
       </header>
       <div className={styles.picSection}>
-        <img src={loggedInUserInfo.profilePic} className={styles.profilePic} />
+        {/* <img src={loggedInUserInfo.profilePic} className={styles.profilePic} /> */}
         <p>@{loggedInUserInfo.username}</p>
       </div>
       <div className={styles.stats}>
@@ -53,7 +53,7 @@ export default function ProfilePage() {
           <p>Followers</p>
         </div>
         <div className={styles.likes}>
-          <p className={styles.number}>{loggedInUserInfo.likes}</p>
+          {/* <p className={styles.number}>{loggedInUserInfo.likes}</p> */}
           <p>Like</p>
         </div>
       </div>
@@ -77,9 +77,9 @@ export default function ProfilePage() {
         </li>
       </ul>
       <div>
-        {loggedInUserInfo.videoUrls.map((video) => {
+        {/* {loggedInUserInfo.videoUrls.map((video) => {
           return <video className={styles.thumbnail} src={video.url}></video>;
-        })}
+        })} */}
       </div>
     </div>
   );
