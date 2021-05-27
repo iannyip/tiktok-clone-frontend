@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
@@ -18,7 +18,6 @@ export default function Home() {
   console.log(videosForYou);
   const videosJSX = videosForYou.map((video) => {
     const likers = video.likes.map((liker) => liker.userId);
-    console.log(likers);
     const videoObj = {
       videoId: video.id,
       videourl: video.url,
@@ -32,8 +31,8 @@ export default function Home() {
       comments: 100,
       shares: 100,
     };
-    console.log(video);
-    console.log(videoObj);
+    // console.log(video);
+    // console.log(videoObj);
     return <Video key={video.id} videoObj={videoObj} />;
   });
 
