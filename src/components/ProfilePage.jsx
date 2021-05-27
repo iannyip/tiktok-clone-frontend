@@ -13,15 +13,21 @@ import VideoThumbnail from "react-video-thumbnail";
 export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
 
-  useEffect(() => {
-    getUserInfo(dispatch);
-  }, []);
+  //   useEffect(() => {
+  //     getUserInfo(dispatch);
+  //   }, []);
 
   const handleUserVideosClick = () => {};
 
   const { loggedInUserInfo } = store;
-  //   console.log("user info========", loggedInUserInfo);
-  //   console.log("video urls", loggedInUserInfo.videoUrls);
+  console.log("user info========", loggedInUserInfo);
+  //   console.log("video urls", loggedInUserInfo.videos);
+
+  // this gets the total number of likes a user has received
+  let totalLikes = 0;
+  loggedInUserInfo.videos.map((video) => {
+    return (totalLikes += video.likes.length);
+  });
 
   return (
     <div className={styles.profilePage}>
@@ -30,15 +36,20 @@ export default function ProfilePage() {
           <PersonAddOutlinedIcon />
         </p>
         <p className={styles.username}>
-          {/* <span>{loggedInUserInfo.username}</span> */}
+          <span>{loggedInUserInfo.username}</span>
           <ArrowDropDownOutlinedIcon />
         </p>
         <p>
           <MoreVertOutlinedIcon />
         </p>
       </header>
+
       <div className={styles.picSection}>
-        {/* <img src={loggedInUserInfo.profilePic} className={styles.profilePic} /> */}
+        <img
+          src={loggedInUserInfo.profilePic}
+          className={styles.profilePic}
+          alt="..."
+        />
         <p>@{loggedInUserInfo.username}</p>
       </div>
       <div className={styles.stats}>
@@ -53,7 +64,7 @@ export default function ProfilePage() {
           <p>Followers</p>
         </div>
         <div className={styles.likes}>
-          {/* <p className={styles.number}>{loggedInUserInfo.likes}</p> */}
+          <p className={styles.number}>{totalLikes}</p>
           <p>Like</p>
         </div>
       </div>
@@ -77,9 +88,9 @@ export default function ProfilePage() {
         </li>
       </ul>
       <div>
-        {/* {loggedInUserInfo.videoUrls.map((video) => {
+        {loggedInUserInfo.videos.map((video) => {
           return <video className={styles.thumbnail} src={video.url}></video>;
-        })} */}
+        })}
       </div>
     </div>
   );
