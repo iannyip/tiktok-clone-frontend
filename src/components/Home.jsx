@@ -17,14 +17,16 @@ export default function Home() {
   console.log(store);
   const { loggedInUserId, isUserLoggedIn } = store;
 
+  // makes backend query, gets the window heightt
   useEffect(() => {
     const newHeight = window.innerHeight;
     setHeight(newHeight);
     getVideosForYou(dispatch);
   }, []);
 
+  // Once store contains all the videos,
+  // Create a copy in this component for local management
   const { videosForYou } = store;
-
   useEffect(() => {
     if (videosForYou.length > 0) {
       setAllVideos([...videosForYou]);
@@ -32,6 +34,7 @@ export default function Home() {
     }
   }, [videosForYou]);
 
+  // Initially, we will load 5 videos into the queue
   useEffect(() => {
     if (queriedVideos === true) {
       const initialize10 = [];
@@ -43,22 +46,26 @@ export default function Home() {
     }
   }, [queriedVideos]);
 
+  // Each time the user reaches the last (5th) video
+  // We will -2 videos and +2 videos to the queue
   useEffect(() => {
     if (reachingEnd === true) {
       for (let i = 0; i < 2; i += 1) {
         loadedNVideos.shift();
         loadedNVideos.push(allVideos.shift());
-        console.log(
-          `loadedNVideos: ${loadedNVideos.length}, allVideos: ${allVideos.length}`
-        );
-        console.log(videosForYou.length);
       }
       setAllVideos(allVideos);
       setLoadedNVideos(loadedNVideos);
       setReachingEnd(false);
+      // if user has reached the end of the list, reload all previous videos again
+      if (allVideos.length < 5) {
+        setAllVideos([...allVideos, ...videosForYou]);
+      }
     }
   }, [reachingEnd]);
 
+  // Function that checks if the user has reached the end of queue
+  // This runs each time user scrolls (onScroll)
   const handleScroll = () => {
     if (refScroller.current.scrollTop > 0.95 * height * 3) {
       console.log("time for reload!");
@@ -66,8 +73,8 @@ export default function Home() {
     }
   };
 
-  console.log("VIDEOS LOADED: ");
-  console.log(loadedNVideos);
+  // use Map to render in a loop
+  // The 5 videos to be displayed at any time
   const videosJSX = loadedNVideos.map((video) => {
     const likersAsObj = video.likes;
     const likers = likersAsObj.map((liker) => liker["user_id"]);
@@ -110,11 +117,9 @@ export default function Home() {
       ref={refScroller}
       onScroll={handleScroll}
     >
-      {/* <div className={styles.scrollDiv}> */}
       {/* <Video videoObj={videoObjSample} />
       <Video videoObj={videoObjSample} /> */}
       {videosJSX}
     </div>
-    // </div>
   );
 }
