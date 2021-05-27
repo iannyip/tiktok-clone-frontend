@@ -1,8 +1,9 @@
 import './App.css';
 import {TiktokProvider} from "./store.js";
 import Home from "./components/Home.jsx";
-import LoginPage from "./components/LoginPage.jsx"
 import FooterNavbar from "./components/FooterNavbar.jsx";
+import MePage from "./components/MePage.jsx"
+import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -11,6 +12,7 @@ import {
 } from "react-router-dom";
 
 function App() {
+  
   return (
     <TiktokProvider>
       <div className="App">
@@ -22,7 +24,7 @@ function App() {
                 <Home/>
               </Route>
               <Route path="/me">
-                <LoginPage/>
+                <MePage/>
               </Route>
             </Switch>
             <FooterNavbar />
