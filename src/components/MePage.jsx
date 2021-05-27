@@ -8,5 +8,10 @@ export default function MePage() {
   const { store, dispatch } = useContext(tiktokContext);
   const { isUserLoggedIn } = store;
 
-  return <>{isUserLoggedIn ? <ProfilePage /> : <LoginPage />}</>;
+  return (
+    <>
+      <LoginPage />
+      {/* {isUserLoggedIn ? <ProfilePage /> : <LoginPage />} */}
+    </>
+  );
 }
