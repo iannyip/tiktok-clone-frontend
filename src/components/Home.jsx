@@ -6,18 +6,49 @@ import ProfilePage from "./ProfilePage.jsx";
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
+  const [height, setHeight] = useState(0);
+  const [queriedVideos, setQueriedVideos] = useState(false);
+  const [loaded10Videos, setLoaded10Videos] = useState([]);
+  const [allVideos, setAllVideos] = useState([]);
 
   console.log(store);
   const { loggedInUserId, isUserLoggedIn } = store;
 
   useEffect(() => {
+    console.log("gettting all videos from backend!");
+    const newHeight = window.innerHeight;
+    setHeight(newHeight);
     getVideosForYou(dispatch);
   }, []);
 
   const { videosForYou } = store;
-  console.log(videosForYou);
-  const videosJSX = videosForYou.map((video) => {
-    const likers = video.likes.map((liker) => liker.userId);
+
+  useEffect(() => {
+    console.log("videosForYou has been loaded");
+    console.log(videosForYou);
+    if (videosForYou.length > 0) {
+      console.log("actually loaded");
+      setAllVideos(videosForYou);
+      setQueriedVideos(true);
+    }
+  }, [videosForYou]);
+
+  useEffect(() => {
+    if (queriedVideos === true) {
+      console.log("allVideos has been set!!");
+      const initialize10 = [];
+      for (let i = 0; i < 10; i += 1) {
+        initialize10.push(allVideos.shift());
+      }
+      setAllVideos(allVideos);
+      setLoaded10Videos(initialize10);
+    }
+  }, [queriedVideos]);
+
+  console.log(loaded10Videos);
+  const videosJSX = loaded10Videos.map((video) => {
+    const likersAsObj = video.likes;
+    const likers = likersAsObj.map((liker) => liker["user_id"]);
     const videoObj = {
       videoId: video.id,
       videourl: video.url,
@@ -27,7 +58,7 @@ export default function Home() {
       description: video.description,
       song: video.music,
       userliked: isUserLoggedIn && likers.includes(loggedInUserId),
-      likes: video.likes.length,
+      likes: likers.length,
       comments: 100,
       shares: 100,
     };
@@ -55,8 +86,8 @@ export default function Home() {
 
   return (
     <div className={styles.homeVideos}>
-      {/* <Video videoObj={videoObjSample} />
-      <Video videoObj={videoObjSample} /> */}
+      <Video videoObj={videoObjSample} />
+      <Video videoObj={videoObjSample} />
       {videosJSX}
     </div>
   );
