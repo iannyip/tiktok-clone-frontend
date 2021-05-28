@@ -1,0 +1,88 @@
+.topHeader {
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomHeader {
+    padding-top: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.headerList {
+    color: gray;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.searchInput {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.searchInput p {
+    background-color: lightgray;
+    color: gray;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.searchInput input {
+    height: 30px;
+    margin-right: 20px;
+    background-color: lightgray;
+    text-align: left;
+    border: none;
+    width: 85%;
+    font-size: 15px;
+}
+
+.active {
+    color: black;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+    font-weight: 600;
+}
+
+.followed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.userInfo p {
+    margin-left: 10px;
+}
+
+.userInfo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
+
+.followed button {
+    height: 30px;
+    width: 90px;
+    background-color: white;
+    border: 1px solid lightgray;
+    margin-right: 20px;
+}
