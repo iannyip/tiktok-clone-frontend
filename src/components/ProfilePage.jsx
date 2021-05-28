@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
-import { getUserInfo, tiktokContext } from "../store.js";
+import { getFollowers, getFollowing, getUserInfo, tiktokContext } from "../store.js";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArrowDropDownOutlinedIcon from "@material-ui/icons/ArrowDropDownOutlined";
@@ -13,11 +13,37 @@ import VideoThumbnail from "react-video-thumbnail";
 export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
 
+  const [userVideos, setUserVideos] = useState(true);
+  const [likedVideos, setLikedVideos] = useState(false);
+  const [privateVideos, setPrivateVideos] = useState(false);
+
   //   useEffect(() => {
   //     getUserInfo(dispatch);
   //   }, []);
+  useEffect(() => {
+    getFollowers(dispatch);
+    getFollowing(dispatch);
+  }, [])
 
-  const handleUserVideosClick = () => {};
+  const { followers, following } = store
+
+  const handleUserVideosClick = () => {
+    setUserVideos(true);
+    setLikedVideos(false);
+    setPrivateVideos(false);
+  };
+
+  const handleLikedVideosClick = () => {
+    setUserVideos(false);
+    setLikedVideos(true);
+    setPrivateVideos(false);
+  };
+
+  const handlePrivateVideosClick = () => {
+    setUserVideos(false);
+    setLikedVideos(false);
+    setPrivateVideos(true);
+  };
 
   const { loggedInUserInfo } = store;
   console.log("user info========", loggedInUserInfo);
@@ -31,7 +57,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      {loggedInUserInfo ? (
+      {loggedInUserInfo && following && followers && (
         <div className={styles.profilePage}>
           <header className={styles.header}>
             <p>
@@ -57,12 +83,12 @@ export default function ProfilePage() {
           <div className={styles.stats}>
             <div className={styles.following}>
               <div className={styles.borderRight}></div>
-              <p className={styles.number}>2</p>
+              <p className={styles.number}>{following.length}</p>
               <p>Following</p>
             </div>
             <div className={styles.followers}>
               <div className={styles.borderRight}></div>
-              <p className={styles.number}>2</p>
+              <p className={styles.number}>{followers.length}</p>
               <p>Followers</p>
             </div>
             <div className={styles.likes}>
@@ -79,15 +105,21 @@ export default function ProfilePage() {
             </button>
           </div>
           <ul className={styles.videos}>
-            <li>
-              <ViewColumnIcon onClick={handleUserVideosClick} />
-            </li>
-            <li>
-              <FavoriteBorderOutlinedIcon />
-            </li>
-            <li>
-              <LockOutlinedIcon />
-            </li>
+            {userVideos ? (
+              <li className={styles.activeList}><ViewColumnIcon onClick={handleUserVideosClick} /></li>
+            ) : (
+              <li><ViewColumnIcon onClick={handleUserVideosClick} /></li>
+            )}
+            {likedVideos ? (
+              <li className={styles.activeList}><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
+            ) : (
+              <li><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
+            )}
+            {privateVideos ? (
+              <li className={styles.activeList}><LockOutlinedIcon onClick={handlePrivateVideosClick} /></li>
+            ) : (
+              <li><LockOutlinedIcon onClick={handlePrivateVideosClick} /></li>
+            )}
           </ul>
           <div>
             {loggedInUserInfo.videos.map((video) => {
@@ -101,8 +133,6 @@ export default function ProfilePage() {
             })}
           </div>
         </div>
-      ) : (
-        <p className={styles.errormsg}>Error rendering user profile</p>
       )}
     </>
   );
