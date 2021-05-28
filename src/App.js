@@ -2,7 +2,8 @@ import './App.css';
 import {TiktokProvider} from "./store.js";
 import Home from "./components/Home.jsx";
 import FooterNavbar from "./components/FooterNavbar.jsx";
-import MePage from "./components/MePage.jsx"
+import MePage from "./components/MePage.jsx";
+import UploadPage from "./components/UploadPage.jsx"
 import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
@@ -22,6 +23,9 @@ function App() {
               <Redirect exact from="/" to="/home" />
               <Route path="/home">
                 <Home/>
+              </Route>
+              <Route path="/upload">
+                <UploadPage/>
               </Route>
               <Route path="/me">
                 <MePage/>
