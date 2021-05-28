@@ -57,10 +57,8 @@ export default function Home() {
 
   return (
     <div className={styles.homeVideos}>
-      {/* <Video videoObj={videoObjSample} />
-      <Video videoObj={videoObjSample} /> */}
-      {/* {videosJSX} */}
-      <Follow />
+      <Video videoObj={videoObjSample} />
+      {videosJSX}
     </div>
   );
 }

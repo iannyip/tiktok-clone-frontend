@@ -21,7 +21,8 @@ const LOAD_LIKES = "LOAD_LIKES";
 const LOGIN_USER = "LOGIN_USER";
 const LOAD_VIDEOS = "LOAD_VIDEOS";
 const USER_INFO = "USER_INFO";
-const LOAD_FOLLOWS = "LOAD_FOLLOWS";
+const LOAD_FOLLOWERS = "LOAD_FOLLOWERS";
+const LOAD_FOLLOWING = "LOAD_FOLLOWING";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -36,8 +37,10 @@ export function tiktokReducer(state, action) {
       return {...state, videosForYou: action.payload.videos}
     case USER_INFO:
       return {...state, loggedInUserInfo: action.payload.info}
-    case LOAD_FOLLOWS:
-      return {...state, loggedInUserInfo: {follows: action.payload.follows} }
+    case LOAD_FOLLOWERS:
+      return {...state, followers: action.payload.followers }
+    case LOAD_FOLLOWING:
+      return {...state, following: action.payload.following}
     default:
       return state;
   }
@@ -81,11 +84,21 @@ function loadUserInfo (userObj) {
   }
 }
 
-function loadFollows (followsObj) {
+function loadFollowers (followerObj) {
+  console.log(followerObj)
   return {
-    type: LOAD_FOLLOWS,
+    type: LOAD_FOLLOWERS,
     payload: {
-      follows: followsObj
+      followers: followerObj
+    }
+  }
+}
+
+function loadFollowing (followingObj) {
+  return {
+    type: LOAD_FOLLOWING,
+    payload: {
+      following: followingObj
     }
   }
 }
@@ -159,12 +172,22 @@ export function getUserInfo (dispatch) {
     .catch((error) => console.log(error))
 }
 
-export function getFollows (dispatch) {
+export function getFollowers (dispatch) {
   axios
-    .get (BACKEND_URL + '/userFollows')
+    .get (BACKEND_URL + '/userFollowers')
     .then((response) => {
-      console.log('user followwwws====', response.data);
-      dispatch((loadFollows(response.data)))
+      console.log('followers====', response.data);
+      dispatch(loadFollowers(response.data.followed))
       })
     .catch ((error) => console.log(error))
+}
+
+export function getFollowing (dispatch) {
+  axios
+    .get (BACKEND_URL + '/userFollowing')
+    .then((response) => {
+      console.log('following======', response.data);
+      dispatch(loadFollowing(response.data.following))
+    })
+    .catch((error) => console.log(error))
 }
