@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import styles from "./LoginPage.module.css";
 import { tiktokContext, login } from "../store.js";
 
-export default function Login() {
+export default function LoginPage() {
   const { store, dispatch } = useContext(tiktokContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
