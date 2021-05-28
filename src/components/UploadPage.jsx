@@ -4,11 +4,12 @@ import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 
 import Uppy from "@uppy/core";
 import Tus from "@uppy/tus";
-import { DragDrop } from "@uppy/react";
+import { DragDrop, FileInput } from "@uppy/react";
 
 export default function UploadPage() {
   // UPPY CODE
   const uppy = new Uppy({
+    id: "Puppy",
     meta: { type: "avatar" },
     restrictions: { maxNumberOfFiles: 1 },
     autoProceed: true,
@@ -30,6 +31,7 @@ export default function UploadPage() {
   return (
     <div className={styles.uploadContainer}>
       <p className={styles.uploadText}>Please upload a video</p>
+      <FileInput uppy={uppy} pretty={true} inputName="files[]" />
       <div className={styles.uploadBtnContainer}>
         <div className={styles.uploadBtn}>
           <PhotoLibraryIcon fontSize="large" />
