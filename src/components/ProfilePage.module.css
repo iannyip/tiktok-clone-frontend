@@ -107,14 +107,17 @@
 
 .videos {
   color: grey;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top:10px;
   padding-left: 0;
   border-bottom: 1px solid lightgray;
   display: flex;
   justify-content: space-around;
   list-style: none;
   margin: 0;
+}
+
+.videos li {
+  padding-bottom: 8px;
 }
 
 .userVideo {
@@ -127,4 +130,10 @@
 .errormsg {
   text-align: center;
   margin-top: 40%;
+}
+
+.activeList {
+  border-bottom: 2px solid black;
+  font-weight: 500;
+  color: black;
 }
