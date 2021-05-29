@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from "./Follow.module.css";
-import { getFollowers, getFollowing, getFollowerFollowing, tiktokContext } from "../store.js";
+import { followUser, unfollowUser, tiktokContext } from "../store.js";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import { Link } from "react-router-dom";
 
 export default function Follow() {
     const { store, dispatch } = useContext(tiktokContext);
     const [userFollowing, setUserFollowing] = useState()
     const [follower, setFollower] = useState()
     const [suggested, setSuggested] = useState()
+    const [isFollowing, setIsFollowing] = useState();
 
     useEffect(() => {
         if (followerFollowing === 'following') {
@@ -18,7 +20,18 @@ export default function Follow() {
             setFollower(true);
             setUserFollowing(false);
         }
-    }, [])
+
+        const isFollowingArray = [];
+        for (let i = 0; i < following.length; i += 1) {
+            for (let j = 0; j < followers.length; j += 1) {
+                if (following[i].username === followers[j].username) {
+                    isFollowingArray.push(following[i].username);
+                }
+            }
+        }
+        console.log('isfollowing array', isFollowingArray);
+        setIsFollowing(isFollowingArray);
+    }, []);
 
     const { followers, following, followerFollowing } = store
     console.log('follower/following', followerFollowing);
@@ -44,6 +57,16 @@ export default function Follow() {
         setSuggested(true);
     }
 
+    const submitUnfollow = (id) => {
+        console.log('person id ', id)
+        unfollowUser(dispatch, id);
+    }
+
+    const submitFollow = (id) => {
+        console.log('person id', id)
+        followUser(dispatch, id);
+    }
+
     console.log('followers', followers);
     console.log('following', following);
     console.log(following.length);
@@ -51,8 +74,11 @@ export default function Follow() {
         <>
             <header className={styles.follow}>
                 <div className={styles.topHeader}>
-                    <ArrowBackIcon fontSize="large" />
+                    <Link to="/me">
+                        <ArrowBackIcon fontSize="large" />
+                    </Link>
                     <PersonAddOutlinedIcon fontSize="large" />
+
                 </div>
                 <div className={styles.bottomHeader}>
                     <ul className={styles.headerList}>
@@ -74,28 +100,33 @@ export default function Follow() {
             </div>
             <div className={styles.result}>
                 {following && userFollowing && (
-                    following.map((person) => {
+                    following.map((person, index) => {
                         return (
                             <div className={styles.followed}>
                                 <div className={styles.userInfo}>
                                     <img src={person.profilePic} />
                                     <p>{person.username}</p>
                                 </div>
-                                <button type="submit">Following</button>
+                                <button type="submit" onClick={() => submitUnfollow(person.id)}>Unfollow</button>
                             </div>
                         )
                     })
                 )
                 }
                 {followers && follower && (
-                    followers.map((person) => {
+                    followers.map((person, index) => {
                         return (
                             <div className={styles.followed}>
                                 <div className={styles.userInfo}>
                                     <img src={person.profilePic} />
                                     <p>{person.username}</p>
                                 </div>
-                                <button type="submit">Follow</button>
+                                {isFollowing.includes(person.username) && (
+                                    <button type="submit" onClick={() => submitUnfollow(person.id)}>Unfollow</button>
+                                )}
+                                {!isFollowing.includes(person.username) && (
+                                    <button type="submit" onClick={() => submitFollow(person.id)}>Follow</button>
+                                )}
                             </div>
                         )
                     })
