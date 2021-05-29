@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
-import { getFollowers, getFollowing, getLikedVideos, getUserInfo, tiktokContext } from "../store.js";
+import { getFollowers, getFollowing, getLikedVideos, getFollowerFollowing, getUserInfo, tiktokContext } from "../store.js";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArrowDropDownOutlinedIcon from "@material-ui/icons/ArrowDropDownOutlined";
@@ -9,6 +9,7 @@ import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import VideoThumbnail from "react-video-thumbnail";
+import { Link } from "react-router-dom";
 
 export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -27,6 +28,15 @@ export default function ProfilePage() {
   }, [])
 
   const { followers, following, likedVideos, loggedInUserInfo } = store
+
+  const handleFollowingClick = () => {
+    console.log('inside handle following click');
+    getFollowerFollowing(dispatch, 'following');
+  }
+
+  const handleFollowersClick = () => {
+    getFollowerFollowing(dispatch, 'followers')
+  }
 
   const handleUserVideosClick = () => {
     setUserVideos(true);
@@ -85,12 +95,16 @@ export default function ProfilePage() {
             <div className={styles.following}>
               <div className={styles.borderRight}></div>
               <p className={styles.number}>{following.length}</p>
-              <p>Following</p>
+              <Link to="/follow">
+                <p onClick={handleFollowingClick}>Following</p>
+              </Link>
             </div>
             <div className={styles.followers}>
               <div className={styles.borderRight}></div>
               <p className={styles.number}>{followers.length}</p>
-              <p>Followers</p>
+              <Link to="follow">
+                <p onClick={handleFollowersClick}>Followers</p>
+              </Link>
             </div>
             <div className={styles.likes}>
               <p className={styles.number}>{totalLikes}</p>

@@ -1,34 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from "./Follow.module.css";
-import { getFollowers, getFollowing, tiktokContext } from "../store.js";
+import { getFollowers, getFollowing, getFollowerFollowing, tiktokContext } from "../store.js";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 export default function Follow() {
     const { store, dispatch } = useContext(tiktokContext);
-    const [userFollowing, setUserFollowing] = useState(true)
-    const [follower, setFollower] = useState(false)
-    const [suggested, setSuggested] = useState(false)
+    const [userFollowing, setUserFollowing] = useState()
+    const [follower, setFollower] = useState()
+    const [suggested, setSuggested] = useState()
 
-    // useEffect(() => {
-    //     getFollowers(dispatch);
-    //     getFollowing(dispatch);
-    // }, [])
+    useEffect(() => {
+        if (followerFollowing === 'following') {
+            setUserFollowing(true);
+        } else {
+            setFollower(true);
+            setUserFollowing(false);
+        }
+    }, [])
 
-    const { followers, following } = store
+    const { followers, following, followerFollowing } = store
+    console.log('follower/following', followerFollowing);
 
 
     const handleFollowingClick = () => {
         setUserFollowing(true);
         setFollower(false);
         setSuggested(false);
+        // getFollowerFollowing(dispatch, 'following');
     }
 
     const handleFollowerClick = () => {
         setUserFollowing(false);
         setFollower(true);
         setSuggested(false);
+        // getFollowerFollowing(dispatch, 'followers');
     }
 
     const handleSuggestedClick = () => {
