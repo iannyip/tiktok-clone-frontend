@@ -11,10 +11,10 @@ export default function Follow() {
     const [follower, setFollower] = useState(false)
     const [suggested, setSuggested] = useState(false)
 
-    useEffect(() => {
-        getFollowers(dispatch);
-        getFollowing(dispatch);
-    }, [])
+    // useEffect(() => {
+    //     getFollowers(dispatch);
+    //     getFollowing(dispatch);
+    // }, [])
 
     const { followers, following } = store
 
