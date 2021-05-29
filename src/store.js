@@ -15,6 +15,7 @@ export const initialState = {
   followers: null,
   videosForYou: [],
   likedVideos: [],
+  followerFollowing:null,
 };
 
 const UPDATE_LIKES = "UPDATE_LIKES";
@@ -25,6 +26,7 @@ const USER_INFO = "USER_INFO";
 const LOAD_FOLLOWERS = "LOAD_FOLLOWERS";
 const LOAD_FOLLOWING = "LOAD_FOLLOWING";
 const LOAD_LIKED = "LOAD_LIKED";
+const LOAD_FOLLOWERFOLLOWING = "LOAD_FOLLOWERFOLLOWING";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -45,6 +47,8 @@ export function tiktokReducer(state, action) {
       return {...state, following: action.payload.following}
     case LOAD_LIKED:
       return {...state, likedVideos: action.payload.liked}
+    case LOAD_FOLLOWERFOLLOWING:
+      return {...state, followerFollowing: action.payload.followerFollowing}
     default:
       return state;
   }
@@ -116,6 +120,15 @@ function loadLikedVideos (videosObj) {
   }
 }
 
+function loadFollowerFollowing (str) {
+  return {
+    type: LOAD_FOLLOWERFOLLOWING,
+    payload: {
+      followerFollowing: str  
+    }
+  }
+} 
+
 // ------- PROVIDER
 export const tiktokContext = React.createContext(null);
 const {Provider} = tiktokContext;
@@ -123,6 +136,10 @@ export function TiktokProvider ({children}){
   const [store, dispatch] = useReducer(tiktokReducer, initialState);
 
   return <Provider value={{store, dispatch}}>{children}</Provider>
+}
+
+export function getFollowerFollowing (dispatch, str) {
+  dispatch(loadFollowerFollowing(str))
 }
 
 // ------- BACKEND REQUESTS
@@ -215,3 +232,4 @@ export function getLikedVideos (dispatch) {
       console.log(error)
     })
 }
+
