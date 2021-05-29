@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
-import { getFollowers, getFollowing, getUserInfo, tiktokContext } from "../store.js";
+import { getFollowers, getFollowing, getLikedVideos, getUserInfo, tiktokContext } from "../store.js";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArrowDropDownOutlinedIcon from "@material-ui/icons/ArrowDropDownOutlined";
@@ -14,7 +14,7 @@ export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
 
   const [userVideos, setUserVideos] = useState(true);
-  const [likedVideos, setLikedVideos] = useState(false);
+  const [likeVideos, setLikeVideos] = useState(false);
   const [privateVideos, setPrivateVideos] = useState(false);
 
   //   useEffect(() => {
@@ -23,30 +23,31 @@ export default function ProfilePage() {
   useEffect(() => {
     getFollowers(dispatch);
     getFollowing(dispatch);
+    getLikedVideos(dispatch);
   }, [])
 
-  const { followers, following } = store
+  const { followers, following, likedVideos, loggedInUserInfo } = store
 
   const handleUserVideosClick = () => {
     setUserVideos(true);
-    setLikedVideos(false);
+    setLikeVideos(false);
     setPrivateVideos(false);
   };
 
   const handleLikedVideosClick = () => {
     setUserVideos(false);
-    setLikedVideos(true);
+    setLikeVideos(true);
     setPrivateVideos(false);
   };
 
   const handlePrivateVideosClick = () => {
     setUserVideos(false);
-    setLikedVideos(false);
+    setLikeVideos(false);
     setPrivateVideos(true);
   };
 
-  const { loggedInUserInfo } = store;
   console.log("user info========", loggedInUserInfo);
+  console.log('liked videos=====', likedVideos);
   //   console.log("video urls", loggedInUserInfo.videos);
 
   // this gets the total number of likes a user has received
@@ -110,7 +111,7 @@ export default function ProfilePage() {
             ) : (
               <li><ViewColumnIcon onClick={handleUserVideosClick} /></li>
             )}
-            {likedVideos ? (
+            {likeVideos ? (
               <li className={styles.activeList}><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
             ) : (
               <li><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
@@ -121,17 +122,33 @@ export default function ProfilePage() {
               <li><LockOutlinedIcon onClick={handlePrivateVideosClick} /></li>
             )}
           </ul>
-          <div>
-            {loggedInUserInfo.videos.map((video) => {
-              return (
-                <video
-                  key={video.id}
-                  className={styles.thumbnail}
-                  src={video.url}
-                ></video>
-              );
-            })}
-          </div>
+          {userVideos && (
+            <div>
+              {loggedInUserInfo.videos.map((video) => {
+                return (
+                  <video
+                    key={video.id}
+                    className={styles.thumbnail}
+                    src={video.url}
+                  ></video>
+                );
+              })}
+            </div>
+          )}
+          {likeVideos && (
+            <div>
+              {likedVideos.map((video) => {
+                return (
+                  <video
+                    key={video.id}
+                    className={styles.thumbnail}
+                    src={video.video.url}
+                  ></video>
+                );
+              })}
+            </div>
+          )}
+
         </div>
       )}
     </>
