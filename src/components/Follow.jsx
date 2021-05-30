@@ -8,10 +8,13 @@ import { Link } from "react-router-dom";
 
 export default function Follow() {
     const { store, dispatch } = useContext(tiktokContext);
+    const { followers, following, followerFollowing } = store;
+
     const [userFollowing, setUserFollowing] = useState()
     const [follower, setFollower] = useState()
     const [suggested, setSuggested] = useState()
-    const [isFollowing, setIsFollowing] = useState();
+    const [followerArray, setFollowerArray] = useState((followers.map((person) => person.username)));
+    const [followingArray, setFollowingArray] = useState((following.map((person) => person.username)));
 
     useEffect(() => {
         if (followerFollowing === 'following') {
@@ -20,20 +23,8 @@ export default function Follow() {
             setFollower(true);
             setUserFollowing(false);
         }
-
-        const isFollowingArray = [];
-        for (let i = 0; i < following.length; i += 1) {
-            for (let j = 0; j < followers.length; j += 1) {
-                if (following[i].username === followers[j].username) {
-                    isFollowingArray.push(following[i].username);
-                }
-            }
-        }
-        console.log('isfollowing array', isFollowingArray);
-        setIsFollowing(isFollowingArray);
     }, []);
 
-    const { followers, following, followerFollowing } = store
     console.log('follower/following', followerFollowing);
 
 
@@ -69,7 +60,8 @@ export default function Follow() {
 
     console.log('followers', followers);
     console.log('following', following);
-    console.log(following.length);
+
+    console.log(followers.includes(following[0]));
     return (
         <>
             <header className={styles.follow}>
@@ -100,7 +92,7 @@ export default function Follow() {
             </div>
             <div className={styles.result}>
                 {following && userFollowing && (
-                    following.map((person, index) => {
+                    following.map((person) => {
                         return (
                             <div className={styles.followed}>
                                 <div className={styles.userInfo}>
@@ -121,11 +113,11 @@ export default function Follow() {
                                     <img src={person.profilePic} />
                                     <p>{person.username}</p>
                                 </div>
-                                {isFollowing.includes(person.username) && (
+                                {followingArray.includes(person.username) && (
                                     <button type="submit" onClick={() => submitUnfollow(person.id)}>Unfollow</button>
                                 )}
-                                {!isFollowing.includes(person.username) && (
-                                    <button type="submit" onClick={() => submitFollow(person.id)}>Follow</button>
+                                {!followingArray.includes(person.username) && (
+                                    <button type="submit" onClick={() => submitFollow(person.id)}>follow</button>
                                 )}
                             </div>
                         )
