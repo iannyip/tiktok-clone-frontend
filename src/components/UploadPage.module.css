@@ -29,4 +29,16 @@
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 35%;
   padding: 0.5rem;
+  cursor: pointer;
+}
+
+.uploadBtn input {
+  display: none;
+}
+
+.customfileupload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
