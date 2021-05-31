@@ -14,6 +14,8 @@ export const initialState = {
   following: null,
   followers: null,
   videosForYou: [],
+  likedVideos: [],
+  followerFollowing:null,
 };
 
 const UPDATE_LIKES = "UPDATE_LIKES";
@@ -23,6 +25,8 @@ const LOAD_VIDEOS = "LOAD_VIDEOS";
 const USER_INFO = "USER_INFO";
 const LOAD_FOLLOWERS = "LOAD_FOLLOWERS";
 const LOAD_FOLLOWING = "LOAD_FOLLOWING";
+const LOAD_LIKED = "LOAD_LIKED";
+const LOAD_FOLLOWERFOLLOWING = "LOAD_FOLLOWERFOLLOWING";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -41,6 +45,10 @@ export function tiktokReducer(state, action) {
       return {...state, followers: action.payload.followers }
     case LOAD_FOLLOWING:
       return {...state, following: action.payload.following}
+    case LOAD_LIKED:
+      return {...state, likedVideos: action.payload.liked}
+    case LOAD_FOLLOWERFOLLOWING:
+      return {...state, followerFollowing: action.payload.followerFollowing}
     default:
       return state;
   }
@@ -103,6 +111,23 @@ function loadFollowing (followingObj) {
   }
 }
 
+function loadLikedVideos (videosObj) {
+  return {
+    type: LOAD_LIKED,
+    payload: {
+      liked: videosObj
+    }
+  }
+}
+
+function loadFollowerFollowing (str) {
+  return {
+    type: LOAD_FOLLOWERFOLLOWING,
+    payload: {
+      followerFollowing: str  
+    }
+  }
+} 
 
 // ------- PROVIDER
 export const tiktokContext = React.createContext(null);
@@ -111,6 +136,10 @@ export function TiktokProvider ({children}){
   const [store, dispatch] = useReducer(tiktokReducer, initialState);
 
   return <Provider value={{store, dispatch}}>{children}</Provider>
+}
+
+export function getFollowerFollowing (dispatch, str) {
+  dispatch(loadFollowerFollowing(str))
 }
 
 // ------- BACKEND REQUESTS
@@ -200,3 +229,15 @@ export function uploadVideo (description, music, url, userId) {
     })
     .catch((error) => console.log(error))
 }
+export function getLikedVideos (dispatch) {
+  axios
+    .get (BACKEND_URL + '/likedVideos')
+    .then ((response) => {
+      console.log('liked videos=====', response.data);
+      dispatch(loadLikedVideos(response.data.liked));
+    })
+    .catch ((error) => {
+      console.log(error)
+    })
+}
+

@@ -4,6 +4,7 @@ import Home from "./components/Home.jsx";
 import FooterNavbar from "./components/FooterNavbar.jsx";
 import MePage from "./components/MePage.jsx";
 import UploadPage from "./components/UploadPage.jsx"
+import Follow from "./components/Follow.jsx";
 import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
@@ -29,6 +30,9 @@ function App() {
               </Route>
               <Route path="/me">
                 <MePage/>
+              </Route>
+              <Route path="/follow">
+                <Follow/>
               </Route>
             </Switch>
             <FooterNavbar />
