@@ -1,17 +1,30 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import styles from "./UploadPage.module.css";
 import Button from "@material-ui/core/Button";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { firebaseApp } from "../firebase.js";
+import { uploadVideo, tiktokContext } from "../store.js";
+import { useHistory } from "react-router-dom";
 
 export default function UploadPage() {
+  const { store, dispatch } = useContext(tiktokContext);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [description, setDescription] = useState("");
-  const [song, setSong] = useState("");
+  const [music, setMusic] = useState("");
   const inputRef = useRef(null);
+  let history = useHistory();
+
+  const { isUserLoggedIn, loggedInUserId } = store;
+
+  const handleInputClick = (event) => {
+    if (!isUserLoggedIn) {
+      history.push("/me");
+      event.preventDefault();
+    }
+  };
 
   const fileInputChange = (event) => {
     setUploadSuccess(false);
@@ -23,7 +36,7 @@ export default function UploadPage() {
   };
 
   const handleSongChange = (event) => {
-    setSong(event.target.value);
+    setMusic(event.target.value);
   };
 
   const handlePostClick = () => {
@@ -39,15 +52,13 @@ export default function UploadPage() {
     fileRef
       .put(file)
       .then((snapshot) => {
-        console.log(snapshot);
-        console.log("uploaded");
         return snapshot.ref.getDownloadURL();
       })
       .then((result) => {
-        console.log(result);
+        uploadVideo(description, music, result, loggedInUserId);
         setShowLoading(false);
         setDescription("");
-        setSong("");
+        setMusic("");
         setUploadSuccess(true);
       })
       .catch((error) => {
@@ -61,7 +72,12 @@ export default function UploadPage() {
 
       <div className={styles.uploadBtnContainer}>
         <label className={styles.uploadBtn}>
-          <input ref={inputRef} type="file" onChange={fileInputChange} />
+          <input
+            ref={inputRef}
+            type="file"
+            onChange={fileInputChange}
+            onClick={handleInputClick}
+          />
           <PhotoLibraryIcon fontSize="large" />
         </label>
 
@@ -75,7 +91,7 @@ export default function UploadPage() {
             ></input>
             <input
               type="text"
-              value={song}
+              value={music}
               placeholder="song (leave blank if original audio)"
               onChange={handleSongChange}
             ></input>
