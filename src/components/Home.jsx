@@ -4,7 +4,7 @@ import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
 import ProfilePage from "./ProfilePage.jsx";
-import Follow from './Follow.jsx';
+import Follow from "./Follow.jsx";
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -99,7 +99,7 @@ export default function Home() {
   const videoObjSample = {
     videoId: 1,
     videourl:
-      "https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4",
+      "https://firebasestorage.googleapis.com/v0/b/tiktok-clone-78b71.appspot.com/o/mixkit-video-of-a-cat-played-four-times-with-different-colored-13784.mp4?alt=media&token=4e49d3a8-70fd-4de7-96ec-212271d26f8a",
     userprofileurl:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
     userId: 1,

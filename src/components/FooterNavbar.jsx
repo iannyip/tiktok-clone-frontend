@@ -28,7 +28,9 @@ export default function FooterNavbar() {
           <p>Discover</p>
         </li>
         <li>
-          <AddBoxIcon fontSize="default" />
+          <Link to="/upload">
+            <AddBoxIcon fontSize="default" />
+          </Link>
         </li>
         <li>
           <SmsOutlinedIcon fontSize="default" />
