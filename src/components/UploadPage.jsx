@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./UploadPage.module.css";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import { firebaseApp } from "../firebase.js";
@@ -8,6 +8,7 @@ import Tus from "@uppy/tus";
 import { DragDrop, FileInput } from "@uppy/react";
 
 export default function UploadPage() {
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   // UPPY CODE
   const uppy = new Uppy({
     id: "Puppy",
@@ -46,6 +47,7 @@ export default function UploadPage() {
       })
       .then((result) => {
         console.log(result);
+        setUploadSuccess(true);
       });
   };
 
@@ -59,6 +61,7 @@ export default function UploadPage() {
           <input type="file" onChange={fileInputChange} />
           <PhotoLibraryIcon fontSize="large" />
         </label>
+        {uploadSuccess && <p className={styles.success}>Upload successful</p>}
       </div>
     </div>
   );
