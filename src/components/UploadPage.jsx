@@ -8,6 +8,7 @@ import { firebaseApp } from "../firebase.js";
 export default function UploadPage() {
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [song, setSong] = useState("");
   const inputRef = useRef(null);
@@ -25,8 +26,7 @@ export default function UploadPage() {
   };
 
   const handlePostClick = () => {
-    console.log("about to submit");
-    // console.log(inputRef.current.files[0]);
+    setShowForm(false);
     // Get the file reference
     const file = inputRef.current.files[0];
     // Get the firebase storage reference
@@ -34,6 +34,7 @@ export default function UploadPage() {
     // Create a new file reference on firebase storage
     const fileRef = storageRef.child(file.name);
     // Use this fileref to actually put the data
+    setShowLoading(true);
     fileRef
       .put(file)
       .then((snapshot) => {
@@ -43,7 +44,11 @@ export default function UploadPage() {
       })
       .then((result) => {
         console.log(result);
+        setShowLoading(false);
         setUploadSuccess(true);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -81,6 +86,13 @@ export default function UploadPage() {
               Upload
             </Button>
           </div>
+        )}
+        {showLoading && (
+          <img
+            src="/tiktok-loading.gif"
+            className={styles.loadingIcon}
+            alt="..."
+          />
         )}
 
         {uploadSuccess && <p className={styles.success}>Upload successful</p>}

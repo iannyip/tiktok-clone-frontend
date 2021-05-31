@@ -58,3 +58,8 @@
   margin: 5px auto;
   padding: 5px 8px;
 }
+
+.loadingIcon {
+  height: 100px;
+  margin: 0 auto;
+}
