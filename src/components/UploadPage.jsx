@@ -14,6 +14,7 @@ export default function UploadPage() {
   const inputRef = useRef(null);
 
   const fileInputChange = (event) => {
+    setUploadSuccess(false);
     setShowForm(true);
   };
 
@@ -45,6 +46,8 @@ export default function UploadPage() {
       .then((result) => {
         console.log(result);
         setShowLoading(false);
+        setDescription("");
+        setSong("");
         setUploadSuccess(true);
       })
       .catch((error) => {
