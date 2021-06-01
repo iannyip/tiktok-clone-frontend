@@ -1,0 +1,47 @@
+.register {
+    height: 90vh;
+    margin-right: 20px;
+    margin-left: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+}
+
+.iconDiv {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerForm {
+    height: 40vh;
+    width: 70%;
+    margin-left: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.registerForm input {
+    width: 100%;
+    height: 20px;
+}
+
+.registerButtonDiv {
+    margin-right: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 150px;
+}
+
+.registerButtonDiv button {
+    background-color: #ec3865;
+    border-radius: 2px;
+    border: none;
+    height: 30px;
+    width: 40%;
+}

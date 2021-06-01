@@ -258,3 +258,15 @@ export function unfollowUser (dispatch, id) {
       console.log(error);
     })
 }
+
+export function registerUser (dispatch, data) {
+  axios
+    .post(BACKEND_URL + '/registerUser', 
+    data)
+    .then((response) => {
+      console.log('new user added', response.data);
+      // dispatch(loginUser(response.data));
+    })
+    .catch((error) => console.log(error));
+
+}
