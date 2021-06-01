@@ -21,21 +21,21 @@ export default function FooterNavbar() {
             <p>Home</p>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <p className="icon">
             <SearchIcon fontSize="default" />
           </p>
           <p>Discover</p>
-        </li>
+        </li> */}
         <li>
           <Link to="/upload">
             <AddBoxIcon fontSize="default" />
           </Link>
         </li>
-        <li>
+        {/* <li>
           <SmsOutlinedIcon fontSize="default" />
           <p>Inbox</p>
-        </li>
+        </li> */}
         <li>
           <Link to="/me">
             <PersonOutlineOutlinedIcon fontSize="default" />
