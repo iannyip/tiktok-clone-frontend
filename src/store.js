@@ -221,6 +221,14 @@ export function getFollowing (dispatch) {
     .catch((error) => console.log(error))
 }
 
+export function uploadVideo (description, music, url, userId) { 
+  axios
+    .post(BACKEND_URL + '/uploadVideo', {description, music, url, userId})
+    .then((response) => {
+      console.log('uploaded', response.data);
+    })
+    .catch((error) => console.log(error))
+}
 export function getLikedVideos (dispatch) {
   axios
     .get (BACKEND_URL + '/likedVideos')
