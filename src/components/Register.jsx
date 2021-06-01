@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styles from "./Register.module.css";
 import { tiktokContext, registerUser } from "../store.js";
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
@@ -10,7 +10,6 @@ export default function Register() {
     const [name, setName] = useState();
     const [password, setPassword] = useState();
     const [email, setEmail] = useState();
-    const [profilePic, setProfilePic] = useState();
     const inputRef = useRef(null);
 
     const submitForm = () => {
@@ -31,10 +30,16 @@ export default function Register() {
             })
             .then((result) => {
                 console.log(result);
-                // setShowLoading(false);
-                // setDescription("");
-                // setSong("");
-                // setUploadSuccess(true);
+                const data = {
+                    username: name,
+                    password: password,
+                    email: email,
+                    profilePic: result,
+                }
+                registerUser(dispatch, data);
+                setName();
+                setPassword();
+                setEmail();
             })
             .catch((error) => {
                 console.log(error);
@@ -46,6 +51,7 @@ export default function Register() {
         <div className={styles.register}>
             <div className={styles.iconDiv}>
                 <AccountBoxIcon fontSize="large" />
+                <h3>Create Account</h3>
             </div>
             <form className={styles.registerForm}>
                 <div className={styles.inputName}>
@@ -62,7 +68,7 @@ export default function Register() {
                 </div>
                 <div className={styles.profilepic}>
                     <label htmlFor="profilepic">Profile picture: </label>
-                    <input type="file" id="profilepic" accept="image/*" onChange={(event) => setProfilePic(event.target.files[0])} />
+                    <input ref={inputRef} type="file" accept="image/*" />
                 </div>
             </form>
             <div className={styles.registerButtonDiv}>

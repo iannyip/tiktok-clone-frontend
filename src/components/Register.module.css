@@ -2,27 +2,25 @@
     height: 90vh;
     margin-right: 20px;
     margin-left: 20px;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
 }
 
 .iconDiv {
     height: 20vh;
+    margin-left: 12%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    color: gray;
 }
 
 .registerForm {
     height: 40vh;
     width: 70%;
-    margin-left: 35px;
+    margin-left: 12%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    
 }
 
 .registerForm input {
@@ -44,4 +42,10 @@
     border: none;
     height: 30px;
     width: 40%;
+}
+
+.registerButtonDiv button:hover {
+    color: white;
+    cursor: pointer;
+
 }

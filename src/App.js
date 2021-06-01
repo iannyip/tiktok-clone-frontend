@@ -5,6 +5,7 @@ import FooterNavbar from "./components/FooterNavbar.jsx";
 import MePage from "./components/MePage.jsx";
 import UploadPage from "./components/UploadPage.jsx"
 import Follow from "./components/Follow.jsx";
+import Register from "./components/Register.jsx";
 import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
@@ -33,6 +34,9 @@ function App() {
               </Route>
               <Route path="/follow">
                 <Follow/>
+              </Route>
+              <Route path="/register">
+                <Register/>
               </Route>
             </Switch>
             <FooterNavbar />

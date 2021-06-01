@@ -62,9 +62,11 @@ export default function ProfilePage() {
 
   // this gets the total number of likes a user has received
   let totalLikes = 0;
-  loggedInUserInfo.videos.forEach((video) => {
-    totalLikes += video.likes.length;
-  });
+  if (loggedInUserInfo.videos) {
+    loggedInUserInfo.videos.forEach((video) => {
+      totalLikes += video.likes.length;
+    })
+  }
 
   return (
     <>

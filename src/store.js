@@ -273,7 +273,7 @@ export function registerUser (dispatch, data) {
     data)
     .then((response) => {
       console.log('new user added', response.data);
-      // dispatch(loginUser(response.data));
+      dispatch(loginUser(response.data));
     })
     .catch((error) => console.log(error));
 

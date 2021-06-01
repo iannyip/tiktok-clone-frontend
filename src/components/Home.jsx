@@ -121,8 +121,7 @@ export default function Home() {
     >
       {/* <Video videoObj={videoObjSample} />
       <Video videoObj={videoObjSample} /> */}
-      {/* {videosJSX} */}
-      <Register />
+      {videosJSX}
     </div>
   );
 }
