@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styles from "./LoginPage.module.css";
 import { tiktokContext, login } from "../store.js";
+import { Link } from "react-router-dom";
 
 export default function LoginPage() {
   const { store, dispatch } = useContext(tiktokContext);
@@ -45,6 +46,13 @@ export default function LoginPage() {
           >
             Submit
           </button>
+          <div className={styles.goToRegister}>
+            <p>
+              <Link to='/register'>
+                No account? Register here
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

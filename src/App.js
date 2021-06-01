@@ -2,8 +2,10 @@ import './App.css';
 import {TiktokProvider} from "./store.js";
 import Home from "./components/Home.jsx";
 import FooterNavbar from "./components/FooterNavbar.jsx";
-import MePage from "./components/MePage.jsx"
+import MePage from "./components/MePage.jsx";
+import UploadPage from "./components/UploadPage.jsx"
 import Follow from "./components/Follow.jsx";
+import Register from "./components/Register.jsx";
 import React, {useContext} from "react";
 import {
   BrowserRouter as Router,
@@ -24,11 +26,17 @@ function App() {
               <Route path="/home">
                 <Home/>
               </Route>
+              <Route path="/upload">
+                <UploadPage/>
+              </Route>
               <Route path="/me">
                 <MePage/>
               </Route>
               <Route path="/follow">
                 <Follow/>
+              </Route>
+              <Route path="/register">
+                <Register/>
               </Route>
             </Switch>
             <FooterNavbar />
