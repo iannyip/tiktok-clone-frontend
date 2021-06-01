@@ -4,7 +4,8 @@ import Video from "./Video.jsx";
 import { tiktokContext, getVideosForYou } from "../store.js";
 import styles from "./Home.module.css";
 import ProfilePage from "./ProfilePage.jsx";
-import Follow from "./Follow.jsx";
+import Follow from './Follow.jsx';
+import Register from './Register.jsx';
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);

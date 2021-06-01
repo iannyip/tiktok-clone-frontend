@@ -61,3 +61,15 @@
   cursor: pointer;
   background-color: #ec3865;
 }
+
+.goToRegister {
+  font-size: 10px;
+  text-align: right;
+}
+
+.goToRegister a {
+  text-decoration: none;
+  color: gray;
+}
+
+

@@ -11,8 +11,8 @@ export const initialState = {
   loggedInUserInfo: null,
   isUserLoggedIn: false,
   profilepic: null,
-  following: null,
-  followers: null,
+  following: [],
+  followers: [],
   videosForYou: [],
   likedVideos: [],
   followerFollowing:null,
@@ -241,3 +241,40 @@ export function getLikedVideos (dispatch) {
     })
 }
 
+export function followUser (dispatch, id) {
+  axios
+    .post (BACKEND_URL + '/followUser', 
+     { userId: id })
+    .then((response) => {
+      console.log('updated list of people user is following', response.data);
+      dispatch(loadFollowing(response.data.following));
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
+export function unfollowUser (dispatch, id) {
+  axios
+    .post(BACKEND_URL + '/unfollowUser', 
+     { userId: id })
+    .then((response) => {
+      console.log('updated list of people user is following', response.data);
+      dispatch(loadFollowing(response.data.following));
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
+export function registerUser (dispatch, data) {
+  axios
+    .post(BACKEND_URL + '/registerUser', 
+    data)
+    .then((response) => {
+      console.log('new user added', response.data);
+      dispatch(loginUser(response.data));
+    })
+    .catch((error) => console.log(error));
+
+}
