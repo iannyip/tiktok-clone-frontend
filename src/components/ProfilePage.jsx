@@ -160,7 +160,7 @@ export default function ProfilePage() {
             )}
           </ul>
           {userVideos && (
-            <div>
+            <div className={styles.videoContainer}>
               {loggedInUserInfo.videos.map((video) => {
                 return (
                   <video
