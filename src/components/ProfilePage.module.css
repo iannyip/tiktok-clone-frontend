@@ -1,5 +1,7 @@
 .profilePage {
   position: relative;
+  height: 100%;
+  overflow: scroll;
 }
 
 .header {
@@ -107,7 +109,7 @@
 
 .videos {
   color: grey;
-  padding-top:10px;
+  padding-top: 10px;
   padding-left: 0;
   border-bottom: 1px solid lightgray;
   display: flex;
@@ -125,6 +127,9 @@
 .thumbnail {
   height: 150px;
   width: 150px;
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
 }
 
 .errormsg {
@@ -141,4 +146,4 @@
 .stats a {
   text-decoration: none;
   color: gray;
-  }
+}

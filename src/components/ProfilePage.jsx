@@ -1,6 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "./ProfilePage.module.css";
-import { getFollowers, getFollowing, getLikedVideos, getFollowerFollowing, getUserInfo, tiktokContext } from "../store.js";
+import {
+  getFollowers,
+  getFollowing,
+  getLikedVideos,
+  getFollowerFollowing,
+  getUserInfo,
+  tiktokContext,
+} from "../store.js";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArrowDropDownOutlinedIcon from "@material-ui/icons/ArrowDropDownOutlined";
@@ -14,6 +21,8 @@ import { Link } from "react-router-dom";
 export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
 
+  console.log(store);
+
   const [userVideos, setUserVideos] = useState(true);
   const [likeVideos, setLikeVideos] = useState(false);
   const [privateVideos, setPrivateVideos] = useState(false);
@@ -25,18 +34,18 @@ export default function ProfilePage() {
     getFollowers(dispatch);
     getFollowing(dispatch);
     getLikedVideos(dispatch);
-  }, [])
+  }, []);
 
-  const { followers, following, likedVideos, loggedInUserInfo } = store
+  const { followers, following, likedVideos, loggedInUserInfo } = store;
 
   const handleFollowingClick = () => {
-    console.log('inside handle following click');
-    getFollowerFollowing(dispatch, 'following');
-  }
+    console.log("inside handle following click");
+    getFollowerFollowing(dispatch, "following");
+  };
 
   const handleFollowersClick = () => {
-    getFollowerFollowing(dispatch, 'followers')
-  }
+    getFollowerFollowing(dispatch, "followers");
+  };
 
   const handleUserVideosClick = () => {
     setUserVideos(true);
@@ -57,7 +66,7 @@ export default function ProfilePage() {
   };
 
   console.log("user info========", loggedInUserInfo);
-  console.log('liked videos=====', likedVideos);
+  console.log("liked videos=====", likedVideos);
   //   console.log("video urls", loggedInUserInfo.videos);
 
   // this gets the total number of likes a user has received
@@ -65,7 +74,7 @@ export default function ProfilePage() {
   if (loggedInUserInfo.videos) {
     loggedInUserInfo.videos.forEach((video) => {
       totalLikes += video.likes.length;
-    })
+    });
   }
 
   return (
@@ -123,19 +132,31 @@ export default function ProfilePage() {
           </div>
           <ul className={styles.videos}>
             {userVideos ? (
-              <li className={styles.activeList}><ViewColumnIcon onClick={handleUserVideosClick} /></li>
+              <li className={styles.activeList}>
+                <ViewColumnIcon onClick={handleUserVideosClick} />
+              </li>
             ) : (
-              <li><ViewColumnIcon onClick={handleUserVideosClick} /></li>
+              <li>
+                <ViewColumnIcon onClick={handleUserVideosClick} />
+              </li>
             )}
             {likeVideos ? (
-              <li className={styles.activeList}><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
+              <li className={styles.activeList}>
+                <FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} />
+              </li>
             ) : (
-              <li><FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} /></li>
+              <li>
+                <FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} />
+              </li>
             )}
             {privateVideos ? (
-              <li className={styles.activeList}><LockOutlinedIcon onClick={handlePrivateVideosClick} /></li>
+              <li className={styles.activeList}>
+                <LockOutlinedIcon onClick={handlePrivateVideosClick} />
+              </li>
             ) : (
-              <li><LockOutlinedIcon onClick={handlePrivateVideosClick} /></li>
+              <li>
+                <LockOutlinedIcon onClick={handlePrivateVideosClick} />
+              </li>
             )}
           </ul>
           {userVideos && (
@@ -164,7 +185,6 @@ export default function ProfilePage() {
               })}
             </div>
           )}
-
         </div>
       )}
     </>
