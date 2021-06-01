@@ -103,6 +103,12 @@
   border-bottom: 1px solid lightgray;
 }
 
+.buttonsFixed {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 .editProfile {
   width: 50%;
   margin-right: 5px;
@@ -117,6 +123,7 @@
   padding: 5px;
 }
 
+/* name refers to the toolbar where you can choose the catetory: your videos or videos you've liked */
 .videos {
   color: grey;
   padding-top: 10px;

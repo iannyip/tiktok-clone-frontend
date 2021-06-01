@@ -21,9 +21,6 @@ import { Link } from "react-router-dom";
 
 export default function ProfilePage() {
   const { store, dispatch } = useContext(tiktokContext);
-
-  console.log(store);
-
   const [userVideos, setUserVideos] = useState(true);
   const [likeVideos, setLikeVideos] = useState(false);
   const [privateVideos, setPrivateVideos] = useState(false);
@@ -83,16 +80,12 @@ export default function ProfilePage() {
       {loggedInUserInfo && following && followers && (
         <div className={styles.profilePage}>
           <header className={styles.header}>
-            <p>
-              <PersonAddOutlinedIcon />
-            </p>
+            <p>{/* <PersonAddOutlinedIcon /> */}</p>
             <p className={styles.username}>
               <span>{loggedInUserInfo.username}</span>
-              <ArrowDropDownOutlinedIcon />
+              {/* <ArrowDropDownOutlinedIcon /> */}
             </p>
-            <p>
-              <MoreVertOutlinedIcon />
-            </p>
+            <p>{/* <MoreVertOutlinedIcon /> */}</p>
           </header>
 
           <div className={styles.picSection}>
@@ -120,16 +113,16 @@ export default function ProfilePage() {
             </div>
             <div className={styles.likes}>
               <p className={styles.number}>{totalLikes}</p>
-              <p>Like</p>
+              <p>Likes</p>
             </div>
           </div>
           <div className={styles.buttons}>
             <button type="submit" className={styles.editProfile}>
               Edit profile
             </button>
-            <button className={styles.bookmarks}>
+            {/* <button className={styles.bookmarks}>
               <BookmarkBorderOutlinedIcon />
-            </button>
+            </button> */}
           </div>
           <ul className={styles.videos}>
             {userVideos ? (
@@ -150,7 +143,7 @@ export default function ProfilePage() {
                 <FavoriteBorderOutlinedIcon onClick={handleLikedVideosClick} />
               </li>
             )}
-            {privateVideos ? (
+            {/* {privateVideos ? (
               <li className={styles.activeList}>
                 <LockOutlinedIcon onClick={handlePrivateVideosClick} />
               </li>
@@ -158,12 +151,11 @@ export default function ProfilePage() {
               <li>
                 <LockOutlinedIcon onClick={handlePrivateVideosClick} />
               </li>
-            )}
+            )} */}
           </ul>
           {userVideos && (
             <div className={styles.videoContainer}>
               {loggedInUserInfo.videos.map((video) => {
-                console.log(video);
                 return (
                   <div className={styles.thumbnail}>
                     <div className={styles.videoInfo}>
@@ -181,14 +173,20 @@ export default function ProfilePage() {
             </div>
           )}
           {likeVideos && (
-            <div>
+            <div className={styles.videoContainer}>
               {likedVideos.map((video) => {
                 return (
-                  <video
-                    key={video.id}
-                    className={styles.thumbnail}
-                    src={video.video.url}
-                  ></video>
+                  <div className={styles.thumbnail}>
+                    <div className={styles.videoInfo}>
+                      <FavoriteIcon fontSize="small" />
+                      {/* {video.likes.length} */}
+                    </div>
+                    <video
+                      key={video.id}
+                      className={styles.thumbnailVideo}
+                      src={video.video.url}
+                    ></video>
+                  </div>
                 );
               })}
             </div>
