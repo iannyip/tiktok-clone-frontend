@@ -15,6 +15,7 @@ import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutline
 import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import VideoThumbnail from "react-video-thumbnail";
 import { Link } from "react-router-dom";
 
@@ -162,12 +163,19 @@ export default function ProfilePage() {
           {userVideos && (
             <div className={styles.videoContainer}>
               {loggedInUserInfo.videos.map((video) => {
+                console.log(video);
                 return (
-                  <video
-                    key={video.id}
-                    className={styles.thumbnail}
-                    src={video.url}
-                  ></video>
+                  <div className={styles.thumbnail}>
+                    <div className={styles.videoInfo}>
+                      <FavoriteIcon fontSize="small" />
+                      {video.likes.length}
+                    </div>
+                    <video
+                      key={video.id}
+                      className={styles.thumbnailVideo}
+                      src={video.url}
+                    ></video>
+                  </div>
                 );
               })}
             </div>
