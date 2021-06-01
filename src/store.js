@@ -143,7 +143,7 @@ export function getFollowerFollowing (dispatch, str) {
 }
 
 // ------- BACKEND REQUESTS
-const BACKEND_URL = 'http://localhost:3004';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3004';
 
 // update likes table and return number of likes a video has
 export function addLike(dispatch, videoId, userId ) {
