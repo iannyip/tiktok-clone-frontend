@@ -50,13 +50,13 @@ export default function VideoSidebar({ videoObj }) {
         )}
         <p>{likesCount}</p>
       </div>
-      <div className={styles.videoSideBar__button}>
+      {/* <div className={styles.videoSideBar__button}>
         <CommentIcon />
         <p>{videoObj.comments}</p>
-      </div>
+      </div> */}
       <div className={styles.videoSideBar__button}>
         <ShareIcon />
-        <p>{videoObj.shares}</p>
+        {/* <p>{videoObj.shares}</p> */}
       </div>
     </div>
   );

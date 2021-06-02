@@ -1,11 +1,23 @@
 .profilePage {
   position: relative;
+  height: 100%;
+  overflow: scroll;
+}
+
+.profilePage::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide the scrollbar for IE, Edge, and Firefox */
+.profilePage {
+  -ms-overflow-style: none; /* IE and Edge*/
+  scrollbar-width: none; /* Firefox */
 }
 
 .header {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   border-bottom: 0.5px solid black;
 }
 
@@ -91,6 +103,12 @@
   border-bottom: 1px solid lightgray;
 }
 
+.buttonsFixed {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 .editProfile {
   width: 50%;
   margin-right: 5px;
@@ -105,9 +123,10 @@
   padding: 5px;
 }
 
+/* name refers to the toolbar where you can choose the catetory: your videos or videos you've liked */
 .videos {
   color: grey;
-  padding-top:10px;
+  padding-top: 10px;
   padding-left: 0;
   border-bottom: 1px solid lightgray;
   display: flex;
@@ -120,11 +139,39 @@
   padding-bottom: 8px;
 }
 
-.userVideo {
+.videoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
+
 .thumbnail {
-  height: 150px;
-  width: 150px;
+  display: flex;
+  width: 32.5%;
+  /* object-fit: cover; */
+  padding-bottom: 2px;
+  position: relative;
+  font-size: 10px;
+}
+
+.videoInfo {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  visibility: hidden;
+  font-size: 1.2rem;
+  color: #fff;
+  z-index: 10;
+  margin: 0px 0px 5px 5px;
+  /* text-align: right; */
+}
+.thumbnail:hover .videoInfo {
+  visibility: visible;
+}
+
+.thumbnailVideo {
+  width: 100%;
+  object-fit: cover;
 }
 
 .errormsg {
@@ -142,4 +189,4 @@
 .editProfile a {
   text-decoration: none;
   color: gray;
-  }
+}
