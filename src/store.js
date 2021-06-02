@@ -16,6 +16,7 @@ export const initialState = {
   videosForYou: [],
   likedVideos: [],
   followerFollowing:null,
+  userDetails: null,
 };
 
 const UPDATE_LIKES = "UPDATE_LIKES";
@@ -27,6 +28,7 @@ const LOAD_FOLLOWERS = "LOAD_FOLLOWERS";
 const LOAD_FOLLOWING = "LOAD_FOLLOWING";
 const LOAD_LIKED = "LOAD_LIKED";
 const LOAD_FOLLOWERFOLLOWING = "LOAD_FOLLOWERFOLLOWING";
+const LOAD_DETAILS = "LOAD_DETAILS";
 
 export function tiktokReducer(state, action) {
   switch (action.type){
@@ -49,6 +51,8 @@ export function tiktokReducer(state, action) {
       return {...state, likedVideos: action.payload.liked}
     case LOAD_FOLLOWERFOLLOWING:
       return {...state, followerFollowing: action.payload.followerFollowing}
+    case LOAD_DETAILS:  
+      return {...state, userDetails: action.payload.userDetails}
     default:
       return state;
   }
@@ -128,6 +132,15 @@ function loadFollowerFollowing (str) {
     }
   }
 } 
+
+function loadUserDetails (userObj) {
+  return {
+    type: LOAD_DETAILS,
+    payload: {
+      userDetails: userObj
+    }
+  }
+}
 
 // ------- PROVIDER
 export const tiktokContext = React.createContext(null);
@@ -276,5 +289,26 @@ export function registerUser (dispatch, data) {
       dispatch(loginUser(response.data));
     })
     .catch((error) => console.log(error));
+}
 
+export function getUserDetails (dispatch) {
+  axios
+    .get(BACKEND_URL + '/getUserDetails')
+    .then((response) => {
+      console.log('user details', response.data);
+      dispatch(loadUserDetails(response.data));
+    })
+    .catch((error) => console.log(error));
+}
+
+export function editDetails (data, dispatch) {
+  console.log('edited data', data);
+
+  axios
+    .post(BACKEND_URL + '/editDetails', data)
+    .then((response) => {
+      console.log('updated details',response.data[0]);
+      login(dispatch, response.data[0].username, response.data[0].password);
+    })
+    .catch((error) => console.log(error));
 }
