@@ -156,7 +156,7 @@ export function getFollowerFollowing (dispatch, str) {
 }
 
 // ------- BACKEND REQUESTS
-const BACKEND_URL = 'http://localhost:3004';
+const BACKEND_URL = 'https://desolate-meadow-95019.herokuapp.com' ||'http://localhost:3004';
 
 // update likes table and return number of likes a video has
 export function addLike(dispatch, videoId, userId ) {
