@@ -9,7 +9,6 @@ export default function Register() {
 
     const [name, setName] = useState();
     const [password, setPassword] = useState();
-    const [email, setEmail] = useState();
     const inputRef = useRef(null);
 
     const submitForm = () => {
@@ -33,13 +32,11 @@ export default function Register() {
                 const data = {
                     username: name,
                     password: password,
-                    email: email,
                     profilePic: result,
                 }
                 registerUser(dispatch, data);
                 setName();
                 setPassword();
-                setEmail();
             })
             .catch((error) => {
                 console.log(error);
@@ -61,10 +58,6 @@ export default function Register() {
                 <div className={styles.password}>
                     <label htmlFor="password">Password: </label>
                     <input type="password" id="password" onChange={(event) => setPassword(event.target.value)} />
-                </div>
-                <div className={styles.email}>
-                    <label htmlFor="email">Email: </label>
-                    <input type="email" id="email" onChange={(event) => setEmail(event.target.value)} />
                 </div>
                 <div className={styles.profilepic}>
                     <label htmlFor="profilepic">Profile picture: </label>
