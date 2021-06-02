@@ -6,6 +6,7 @@ import styles from "./Home.module.css";
 import ProfilePage from "./ProfilePage.jsx";
 import Follow from './Follow.jsx';
 import Register from './Register.jsx';
+import Edit from './Edit.jsx';
 
 export default function Home() {
   const { store, dispatch } = useContext(tiktokContext);

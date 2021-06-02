@@ -185,7 +185,8 @@
   color: black;
 }
 
-.stats a {
+.stats a,
+.editProfile a {
   text-decoration: none;
   color: gray;
 }

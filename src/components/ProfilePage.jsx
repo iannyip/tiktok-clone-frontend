@@ -118,7 +118,9 @@ export default function ProfilePage() {
           </div>
           <div className={styles.buttons}>
             <button type="submit" className={styles.editProfile}>
-              Edit profile
+              <Link to="/edit">
+                Edit profile
+              </Link>
             </button>
             {/* <button className={styles.bookmarks}>
               <BookmarkBorderOutlinedIcon />
