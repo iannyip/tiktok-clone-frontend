@@ -34,6 +34,7 @@ Note that backend server runs on http://localhost:3004
 ## Development
 
 ```
+nvm use 16
 yarn install
 yarn start
 ```
