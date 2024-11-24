@@ -35,8 +35,8 @@ Note that backend server runs on http://localhost:3004
 
 ```
 nvm use 16
-yarn install
-yarn start
+npm install
+npm start
 ```
 
 View the project at http://localhost:3000.
